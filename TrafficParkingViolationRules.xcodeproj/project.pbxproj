@@ -1,0 +1,727 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0534A2AA20BD99863357731B /* Pods_TrafficParkingViolationRules.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E108E161C77369364BB68346 /* Pods_TrafficParkingViolationRules.framework */; };
+		518D2D7D22E96BB700B8A966 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 518D2D7C22E96BB700B8A966 /* Background.png */; };
+		518D2D7F22E9B33700B8A966 /* VideoSavePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518D2D7E22E9B33700B8A966 /* VideoSavePopUpViewController.swift */; };
+		518D2D8122E9B8AA00B8A966 /* BaseClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518D2D8022E9B8AA00B8A966 /* BaseClassViewController.swift */; };
+		51970A4422E8189D00279CCA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51970A4322E8189D00279CCA /* ForgotPasswordViewController.swift */; };
+		51970A4922E8259100279CCA /* MyLaunchImage.png.png in Resources */ = {isa = PBXBuildFile; fileRef = 51970A4722E8259100279CCA /* MyLaunchImage.png.png */; };
+		51970A4A22E8259100279CCA /* MyLaunchImage.png@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51970A4822E8259100279CCA /* MyLaunchImage.png@2x.png */; };
+		51970A4D22E8329900279CCA /* VideoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51970A4C22E8329900279CCA /* VideoCollectionViewController.swift */; };
+		51970A5022E833BE00279CCA /* videoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51970A4E22E833BE00279CCA /* videoCollectionViewCell.swift */; };
+		51970A5122E833BE00279CCA /* videoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51970A4F22E833BE00279CCA /* videoCollectionViewCell.xib */; };
+		51970A5C22E8636400279CCA /* PasswordSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51970A5B22E8636400279CCA /* PasswordSetViewController.swift */; };
+		51A8325C22F022490007C3AC /* PasswordGetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A8325B22F022490007C3AC /* PasswordGetViewController.swift */; };
+		51A88BCC22EEA60700CE6318 /* ApiEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BCB22EEA60700CE6318 /* ApiEndPoints.swift */; };
+		51A88BDF22EEAA1000CE6318 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BCF22EEAA1000CE6318 /* InteractiveTransition.swift */; };
+		51A88BE022EEAA1000CE6318 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BD022EEAA1000CE6318 /* PresentationController.swift */; };
+		51A88BE122EEAA1000CE6318 /* UIImageView+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BD122EEAA1000CE6318 /* UIImageView+Calculations.swift */; };
+		51A88BE222EEAA1000CE6318 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BD222EEAA1000CE6318 /* UIView+Animations.swift */; };
+		51A88BE322EEAA1000CE6318 /* PopupDialogDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BD322EEAA1000CE6318 /* PopupDialogDefaultView.swift */; };
+		51A88BE422EEAA1000CE6318 /* PopupDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BD422EEAA1000CE6318 /* PopupDialog.swift */; };
+		51A88BE522EEAA1000CE6318 /* PopupDialogOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BD522EEAA1000CE6318 /* PopupDialogOverlayView.swift */; };
+		51A88BE622EEAA1000CE6318 /* PopupDialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BD622EEAA1000CE6318 /* PopupDialogButton.swift */; };
+		51A88BE722EEAA1000CE6318 /* UIViewController+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BD722EEAA1000CE6318 /* UIViewController+Visibility.swift */; };
+		51A88BE822EEAA1000CE6318 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BD822EEAA1000CE6318 /* TransitionAnimator.swift */; };
+		51A88BE922EEAA1000CE6318 /* PopupDialog+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BD922EEAA1000CE6318 /* PopupDialog+Keyboard.swift */; };
+		51A88BEA22EEAA1000CE6318 /* PopupDialogDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BDA22EEAA1000CE6318 /* PopupDialogDefaultViewController.swift */; };
+		51A88BEB22EEAA1000CE6318 /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BDB22EEAA1000CE6318 /* TransitionAnimations.swift */; };
+		51A88BEC22EEAA1000CE6318 /* PopupDialogDefaultButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BDC22EEAA1000CE6318 /* PopupDialogDefaultButtons.swift */; };
+		51A88BED22EEAA1000CE6318 /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BDD22EEAA1000CE6318 /* PresentationManager.swift */; };
+		51A88BEE22EEAA1000CE6318 /* PopupDialogContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BDE22EEAA1000CE6318 /* PopupDialogContainerView.swift */; };
+		51A88BF822EEAA5200CE6318 /* CGImage+Accelerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BF022EEAA5100CE6318 /* CGImage+Accelerate.swift */; };
+		51A88BF922EEAA5200CE6318 /* CGContext+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BF122EEAA5100CE6318 /* CGContext+CGImage.swift */; };
+		51A88BFA22EEAA5200CE6318 /* CaptureQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BF222EEAA5100CE6318 /* CaptureQuality.swift */; };
+		51A88BFB22EEAA5200CE6318 /* TrackingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BF422EEAA5100CE6318 /* TrackingMode.swift */; };
+		51A88BFC22EEAA5200CE6318 /* UIImage+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BF522EEAA5100CE6318 /* UIImage+Blur.swift */; };
+		51A88BFD22EEAA5200CE6318 /* BlurLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BF622EEAA5100CE6318 /* BlurLayer.swift */; };
+		51A88BFE22EEAA5200CE6318 /* DynamicBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A88BF722EEAA5100CE6318 /* DynamicBlurView.swift */; };
+		51B9CC6122E6E17A0027D474 /* UIInterFaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B9CC6022E6E17A0027D474 /* UIInterFaceController.swift */; };
+		51B9CC6322E6E53A0027D474 /* HowCanAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B9CC6222E6E53A0027D474 /* HowCanAssetViewController.swift */; };
+		51B9CC6E22E6EEB20027D474 /* NewUserEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B9CC6D22E6EEB20027D474 /* NewUserEmailViewController.swift */; };
+		51FC4D2322E725F900B35A4F /* NewUserPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FC4D2222E725F900B35A4F /* NewUserPasswordViewController.swift */; };
+		51FC4D2422E7339000B35A4F /* orbitron-black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51B9CC6522E6E82B0027D474 /* orbitron-black.otf */; };
+		51FC4D2522E7339300B35A4F /* orbitron-bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51B9CC6722E6E82B0027D474 /* orbitron-bold.otf */; };
+		51FC4D2622E7339600B35A4F /* orbitron-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51B9CC6622E6E82B0027D474 /* orbitron-light.otf */; };
+		51FC4D2722E7339800B35A4F /* orbitron-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51B9CC6822E6E82C0027D474 /* orbitron-medium.otf */; };
+		51FC4D2822E7339B00B35A4F /* Helvetica-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51B9CC6922E6E8EF0027D474 /* Helvetica-medium.otf */; };
+		51FC4D2922E7339E00B35A4F /* Helvetica-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51B9CC6A22E6E8F50027D474 /* Helvetica-bold.ttf */; };
+		51FE841022E86C0900556CAA /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FE840F22E86C0900556CAA /* extension.swift */; };
+		51FE841222E86CB300556CAA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 51FE841122E86CB300556CAA /* Localizable.strings */; };
+		51FE841422E86D9A00556CAA /* BlurPasswordLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FE841322E86D9A00556CAA /* BlurPasswordLoginViewController.swift */; };
+		51FE841622E86DB700556CAA /* MyPasswordUIValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FE841522E86DB700556CAA /* MyPasswordUIValidation.swift */; };
+		51FEACC522EEEFE100D0241E /* LegalME_splash-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 51FEACC422EEEFE100D0241E /* LegalME_splash-01.png */; };
+		AF36018E22DEF5EC0083BF0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF36018D22DEF5EC0083BF0A /* AppDelegate.swift */; };
+		AF36019322DEF5EC0083BF0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF36019122DEF5EC0083BF0A /* Main.storyboard */; };
+		AF36019522DEF5EE0083BF0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF36019422DEF5EE0083BF0A /* Assets.xcassets */; };
+		AF36019822DEF5EE0083BF0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF36019622DEF5EE0083BF0A /* LaunchScreen.storyboard */; };
+		AF3601A222DF009D0083BF0A /* Login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3601A122DF009D0083BF0A /* Login_VC.swift */; };
+		AF3601A422DF1FDF0083BF0A /* TrafficCamera_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3601A322DF1FDF0083BF0A /* TrafficCamera_VC.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		518D2D7C22E96BB700B8A966 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
+		518D2D7E22E9B33700B8A966 /* VideoSavePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSavePopUpViewController.swift; sourceTree = "<group>"; };
+		518D2D8022E9B8AA00B8A966 /* BaseClassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClassViewController.swift; sourceTree = "<group>"; };
+		51970A4322E8189D00279CCA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		51970A4722E8259100279CCA /* MyLaunchImage.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyLaunchImage.png.png; sourceTree = "<group>"; };
+		51970A4822E8259100279CCA /* MyLaunchImage.png@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MyLaunchImage.png@2x.png"; sourceTree = "<group>"; };
+		51970A4C22E8329900279CCA /* VideoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewController.swift; sourceTree = "<group>"; };
+		51970A4E22E833BE00279CCA /* videoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = videoCollectionViewCell.swift; sourceTree = "<group>"; };
+		51970A4F22E833BE00279CCA /* videoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = videoCollectionViewCell.xib; sourceTree = "<group>"; };
+		51970A5B22E8636400279CCA /* PasswordSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSetViewController.swift; sourceTree = "<group>"; };
+		51A8325B22F022490007C3AC /* PasswordGetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGetViewController.swift; sourceTree = "<group>"; };
+		51A88BCB22EEA60700CE6318 /* ApiEndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndPoints.swift; sourceTree = "<group>"; };
+		51A88BCF22EEAA1000CE6318 /* InteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveTransition.swift; sourceTree = "<group>"; };
+		51A88BD022EEAA1000CE6318 /* PresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		51A88BD122EEAA1000CE6318 /* UIImageView+Calculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Calculations.swift"; sourceTree = "<group>"; };
+		51A88BD222EEAA1000CE6318 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		51A88BD322EEAA1000CE6318 /* PopupDialogDefaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupDialogDefaultView.swift; sourceTree = "<group>"; };
+		51A88BD422EEAA1000CE6318 /* PopupDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupDialog.swift; sourceTree = "<group>"; };
+		51A88BD522EEAA1000CE6318 /* PopupDialogOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupDialogOverlayView.swift; sourceTree = "<group>"; };
+		51A88BD622EEAA1000CE6318 /* PopupDialogButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupDialogButton.swift; sourceTree = "<group>"; };
+		51A88BD722EEAA1000CE6318 /* UIViewController+Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Visibility.swift"; sourceTree = "<group>"; };
+		51A88BD822EEAA1000CE6318 /* TransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
+		51A88BD922EEAA1000CE6318 /* PopupDialog+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PopupDialog+Keyboard.swift"; sourceTree = "<group>"; };
+		51A88BDA22EEAA1000CE6318 /* PopupDialogDefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupDialogDefaultViewController.swift; sourceTree = "<group>"; };
+		51A88BDB22EEAA1000CE6318 /* TransitionAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionAnimations.swift; sourceTree = "<group>"; };
+		51A88BDC22EEAA1000CE6318 /* PopupDialogDefaultButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupDialogDefaultButtons.swift; sourceTree = "<group>"; };
+		51A88BDD22EEAA1000CE6318 /* PresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
+		51A88BDE22EEAA1000CE6318 /* PopupDialogContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupDialogContainerView.swift; sourceTree = "<group>"; };
+		51A88BF022EEAA5100CE6318 /* CGImage+Accelerate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+Accelerate.swift"; sourceTree = "<group>"; };
+		51A88BF122EEAA5100CE6318 /* CGContext+CGImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGContext+CGImage.swift"; sourceTree = "<group>"; };
+		51A88BF222EEAA5100CE6318 /* CaptureQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureQuality.swift; sourceTree = "<group>"; };
+		51A88BF322EEAA5100CE6318 /* DynamicBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicBlurView.h; sourceTree = "<group>"; };
+		51A88BF422EEAA5100CE6318 /* TrackingMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingMode.swift; sourceTree = "<group>"; };
+		51A88BF522EEAA5100CE6318 /* UIImage+Blur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Blur.swift"; sourceTree = "<group>"; };
+		51A88BF622EEAA5100CE6318 /* BlurLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurLayer.swift; sourceTree = "<group>"; };
+		51A88BF722EEAA5100CE6318 /* DynamicBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicBlurView.swift; sourceTree = "<group>"; };
+		51B9CC6022E6E17A0027D474 /* UIInterFaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInterFaceController.swift; sourceTree = "<group>"; };
+		51B9CC6222E6E53A0027D474 /* HowCanAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowCanAssetViewController.swift; sourceTree = "<group>"; };
+		51B9CC6522E6E82B0027D474 /* orbitron-black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "orbitron-black.otf"; sourceTree = "<group>"; };
+		51B9CC6622E6E82B0027D474 /* orbitron-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "orbitron-light.otf"; sourceTree = "<group>"; };
+		51B9CC6722E6E82B0027D474 /* orbitron-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "orbitron-bold.otf"; sourceTree = "<group>"; };
+		51B9CC6822E6E82C0027D474 /* orbitron-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "orbitron-medium.otf"; sourceTree = "<group>"; };
+		51B9CC6922E6E8EF0027D474 /* Helvetica-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Helvetica-medium.otf"; sourceTree = "<group>"; };
+		51B9CC6A22E6E8F50027D474 /* Helvetica-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Helvetica-bold.ttf"; sourceTree = "<group>"; };
+		51B9CC6D22E6EEB20027D474 /* NewUserEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserEmailViewController.swift; sourceTree = "<group>"; };
+		51FC4D2222E725F900B35A4F /* NewUserPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserPasswordViewController.swift; sourceTree = "<group>"; };
+		51FE840F22E86C0900556CAA /* extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
+		51FE841122E86CB300556CAA /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		51FE841322E86D9A00556CAA /* BlurPasswordLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurPasswordLoginViewController.swift; sourceTree = "<group>"; };
+		51FE841522E86DB700556CAA /* MyPasswordUIValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPasswordUIValidation.swift; sourceTree = "<group>"; };
+		51FEACC422EEEFE100D0241E /* LegalME_splash-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LegalME_splash-01.png"; sourceTree = "<group>"; };
+		7061EE13E8C2BF71899CE7A1 /* Pods-TrafficParkingViolationRules.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrafficParkingViolationRules.debug.xcconfig"; path = "Target Support Files/Pods-TrafficParkingViolationRules/Pods-TrafficParkingViolationRules.debug.xcconfig"; sourceTree = "<group>"; };
+		7F6557A615E8CE45665784A2 /* Pods-TrafficParkingViolationRules.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrafficParkingViolationRules.release.xcconfig"; path = "Target Support Files/Pods-TrafficParkingViolationRules/Pods-TrafficParkingViolationRules.release.xcconfig"; sourceTree = "<group>"; };
+		AF36018A22DEF5EC0083BF0A /* TrafficParkingViolationRules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrafficParkingViolationRules.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF36018D22DEF5EC0083BF0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AF36019222DEF5EC0083BF0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AF36019422DEF5EE0083BF0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AF36019722DEF5EE0083BF0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AF36019922DEF5EE0083BF0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF3601A122DF009D0083BF0A /* Login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_VC.swift; sourceTree = "<group>"; };
+		AF3601A322DF1FDF0083BF0A /* TrafficCamera_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficCamera_VC.swift; sourceTree = "<group>"; };
+		E108E161C77369364BB68346 /* Pods_TrafficParkingViolationRules.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrafficParkingViolationRules.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF36018722DEF5EC0083BF0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0534A2AA20BD99863357731B /* Pods_TrafficParkingViolationRules.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E451E62E079D7AFE00A3C9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E108E161C77369364BB68346 /* Pods_TrafficParkingViolationRules.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		51970A4222E8187000279CCA /* ForgotPasswordController */ = {
+			isa = PBXGroup;
+			children = (
+				51970A4322E8189D00279CCA /* ForgotPasswordViewController.swift */,
+			);
+			path = ForgotPasswordController;
+			sourceTree = "<group>";
+		};
+		51970A4B22E8324300279CCA /* VideoCollectionController */ = {
+			isa = PBXGroup;
+			children = (
+				51970A4C22E8329900279CCA /* VideoCollectionViewController.swift */,
+				51970A4E22E833BE00279CCA /* videoCollectionViewCell.swift */,
+				51970A5B22E8636400279CCA /* PasswordSetViewController.swift */,
+				51A8325B22F022490007C3AC /* PasswordGetViewController.swift */,
+				51970A4F22E833BE00279CCA /* videoCollectionViewCell.xib */,
+			);
+			path = VideoCollectionController;
+			sourceTree = "<group>";
+		};
+		51A88BCD22EEAA1000CE6318 /* PopupDialog */ = {
+			isa = PBXGroup;
+			children = (
+				51A88BCE22EEAA1000CE6318 /* Classes */,
+			);
+			path = PopupDialog;
+			sourceTree = "<group>";
+		};
+		51A88BCE22EEAA1000CE6318 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				51A88BCF22EEAA1000CE6318 /* InteractiveTransition.swift */,
+				51A88BD022EEAA1000CE6318 /* PresentationController.swift */,
+				51A88BD122EEAA1000CE6318 /* UIImageView+Calculations.swift */,
+				51A88BD222EEAA1000CE6318 /* UIView+Animations.swift */,
+				51A88BD322EEAA1000CE6318 /* PopupDialogDefaultView.swift */,
+				51A88BD422EEAA1000CE6318 /* PopupDialog.swift */,
+				51A88BD522EEAA1000CE6318 /* PopupDialogOverlayView.swift */,
+				51A88BD622EEAA1000CE6318 /* PopupDialogButton.swift */,
+				51A88BD722EEAA1000CE6318 /* UIViewController+Visibility.swift */,
+				51A88BD822EEAA1000CE6318 /* TransitionAnimator.swift */,
+				51A88BD922EEAA1000CE6318 /* PopupDialog+Keyboard.swift */,
+				51A88BDA22EEAA1000CE6318 /* PopupDialogDefaultViewController.swift */,
+				51A88BDB22EEAA1000CE6318 /* TransitionAnimations.swift */,
+				51A88BDC22EEAA1000CE6318 /* PopupDialogDefaultButtons.swift */,
+				51A88BDD22EEAA1000CE6318 /* PresentationManager.swift */,
+				51A88BDE22EEAA1000CE6318 /* PopupDialogContainerView.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		51A88BEF22EEAA5100CE6318 /* DynamicBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				51A88BF022EEAA5100CE6318 /* CGImage+Accelerate.swift */,
+				51A88BF122EEAA5100CE6318 /* CGContext+CGImage.swift */,
+				51A88BF222EEAA5100CE6318 /* CaptureQuality.swift */,
+				51A88BF322EEAA5100CE6318 /* DynamicBlurView.h */,
+				51A88BF422EEAA5100CE6318 /* TrackingMode.swift */,
+				51A88BF522EEAA5100CE6318 /* UIImage+Blur.swift */,
+				51A88BF622EEAA5100CE6318 /* BlurLayer.swift */,
+				51A88BF722EEAA5100CE6318 /* DynamicBlurView.swift */,
+			);
+			path = DynamicBlurView;
+			sourceTree = "<group>";
+		};
+		51A88C0122EEB52900CE6318 /* ImagesAndLoader */ = {
+			isa = PBXGroup;
+			children = (
+				51970A4722E8259100279CCA /* MyLaunchImage.png.png */,
+				51970A4822E8259100279CCA /* MyLaunchImage.png@2x.png */,
+				518D2D7C22E96BB700B8A966 /* Background.png */,
+				51FEACC422EEEFE100D0241E /* LegalME_splash-01.png */,
+			);
+			path = ImagesAndLoader;
+			sourceTree = "<group>";
+		};
+		51B9CC5F22E6E0C80027D474 /* Constant Controller */ = {
+			isa = PBXGroup;
+			children = (
+				51FE841322E86D9A00556CAA /* BlurPasswordLoginViewController.swift */,
+				51FE841522E86DB700556CAA /* MyPasswordUIValidation.swift */,
+				518D2D8022E9B8AA00B8A966 /* BaseClassViewController.swift */,
+				51FE841122E86CB300556CAA /* Localizable.strings */,
+				51B9CC6022E6E17A0027D474 /* UIInterFaceController.swift */,
+				51FE840F22E86C0900556CAA /* extension.swift */,
+				51A88BCB22EEA60700CE6318 /* ApiEndPoints.swift */,
+			);
+			path = "Constant Controller";
+			sourceTree = "<group>";
+		};
+		51B9CC6422E6E81B0027D474 /* FontFamily */ = {
+			isa = PBXGroup;
+			children = (
+				51B9CC6522E6E82B0027D474 /* orbitron-black.otf */,
+				51B9CC6722E6E82B0027D474 /* orbitron-bold.otf */,
+				51B9CC6622E6E82B0027D474 /* orbitron-light.otf */,
+				51B9CC6822E6E82C0027D474 /* orbitron-medium.otf */,
+				51B9CC6922E6E8EF0027D474 /* Helvetica-medium.otf */,
+				51B9CC6A22E6E8F50027D474 /* Helvetica-bold.ttf */,
+			);
+			path = FontFamily;
+			sourceTree = "<group>";
+		};
+		51B9CC6B22E6EE560027D474 /* NewUserController */ = {
+			isa = PBXGroup;
+			children = (
+				51B9CC6D22E6EEB20027D474 /* NewUserEmailViewController.swift */,
+				51FC4D2222E725F900B35A4F /* NewUserPasswordViewController.swift */,
+			);
+			path = NewUserController;
+			sourceTree = "<group>";
+		};
+		51B9CC6C22E6EE750027D474 /* LoginController */ = {
+			isa = PBXGroup;
+			children = (
+				AF3601A122DF009D0083BF0A /* Login_VC.swift */,
+			);
+			path = LoginController;
+			sourceTree = "<group>";
+		};
+		51FF555222E8846E006DC9D5 /* VideoRecordingController */ = {
+			isa = PBXGroup;
+			children = (
+				AF3601A322DF1FDF0083BF0A /* TrafficCamera_VC.swift */,
+				51B9CC6222E6E53A0027D474 /* HowCanAssetViewController.swift */,
+				518D2D7E22E9B33700B8A966 /* VideoSavePopUpViewController.swift */,
+			);
+			path = VideoRecordingController;
+			sourceTree = "<group>";
+		};
+		600414A5C754FAB79E330B9D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7061EE13E8C2BF71899CE7A1 /* Pods-TrafficParkingViolationRules.debug.xcconfig */,
+				7F6557A615E8CE45665784A2 /* Pods-TrafficParkingViolationRules.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		AF36018122DEF5EC0083BF0A = {
+			isa = PBXGroup;
+			children = (
+				51A88C0122EEB52900CE6318 /* ImagesAndLoader */,
+				51A88BEF22EEAA5100CE6318 /* DynamicBlurView */,
+				51A88BCD22EEAA1000CE6318 /* PopupDialog */,
+				AF36018C22DEF5EC0083BF0A /* TrafficParkingViolationRules */,
+				AF36018B22DEF5EC0083BF0A /* Products */,
+				600414A5C754FAB79E330B9D /* Pods */,
+				0E451E62E079D7AFE00A3C9B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AF36018B22DEF5EC0083BF0A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF36018A22DEF5EC0083BF0A /* TrafficParkingViolationRules.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF36018C22DEF5EC0083BF0A /* TrafficParkingViolationRules */ = {
+			isa = PBXGroup;
+			children = (
+				51B9CC6422E6E81B0027D474 /* FontFamily */,
+				51B9CC5F22E6E0C80027D474 /* Constant Controller */,
+				AF3601A022DEF6040083BF0A /* Screens */,
+				AF36019F22DEF5F80083BF0A /* App Delegates */,
+				AF36019122DEF5EC0083BF0A /* Main.storyboard */,
+				AF36019422DEF5EE0083BF0A /* Assets.xcassets */,
+				AF36019622DEF5EE0083BF0A /* LaunchScreen.storyboard */,
+				AF36019922DEF5EE0083BF0A /* Info.plist */,
+			);
+			path = TrafficParkingViolationRules;
+			sourceTree = "<group>";
+		};
+		AF36019F22DEF5F80083BF0A /* App Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				AF36018D22DEF5EC0083BF0A /* AppDelegate.swift */,
+			);
+			path = "App Delegates";
+			sourceTree = "<group>";
+		};
+		AF3601A022DEF6040083BF0A /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				51FF555222E8846E006DC9D5 /* VideoRecordingController */,
+				51970A4B22E8324300279CCA /* VideoCollectionController */,
+				51970A4222E8187000279CCA /* ForgotPasswordController */,
+				51B9CC6C22E6EE750027D474 /* LoginController */,
+				51B9CC6B22E6EE560027D474 /* NewUserController */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF36018922DEF5EC0083BF0A /* TrafficParkingViolationRules */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF36019C22DEF5EE0083BF0A /* Build configuration list for PBXNativeTarget "TrafficParkingViolationRules" */;
+			buildPhases = (
+				1A233B647EBAA050F361FCDD /* [CP] Check Pods Manifest.lock */,
+				AF36018622DEF5EC0083BF0A /* Sources */,
+				AF36018722DEF5EC0083BF0A /* Frameworks */,
+				AF36018822DEF5EC0083BF0A /* Resources */,
+				79074E937733109EF9140CAA /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TrafficParkingViolationRules;
+			productName = TrafficParkingViolationRules;
+			productReference = AF36018A22DEF5EC0083BF0A /* TrafficParkingViolationRules.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF36018222DEF5EC0083BF0A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Kitlabs-M-0002";
+				TargetAttributes = {
+					AF36018922DEF5EC0083BF0A = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = AF36018522DEF5EC0083BF0A /* Build configuration list for PBXProject "TrafficParkingViolationRules" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AF36018122DEF5EC0083BF0A;
+			productRefGroup = AF36018B22DEF5EC0083BF0A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF36018922DEF5EC0083BF0A /* TrafficParkingViolationRules */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF36018822DEF5EC0083BF0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51970A4A22E8259100279CCA /* MyLaunchImage.png@2x.png in Resources */,
+				51FC4D2722E7339800B35A4F /* orbitron-medium.otf in Resources */,
+				51970A5122E833BE00279CCA /* videoCollectionViewCell.xib in Resources */,
+				518D2D7D22E96BB700B8A966 /* Background.png in Resources */,
+				AF36019822DEF5EE0083BF0A /* LaunchScreen.storyboard in Resources */,
+				51FC4D2522E7339300B35A4F /* orbitron-bold.otf in Resources */,
+				AF36019522DEF5EE0083BF0A /* Assets.xcassets in Resources */,
+				51FEACC522EEEFE100D0241E /* LegalME_splash-01.png in Resources */,
+				51FC4D2622E7339600B35A4F /* orbitron-light.otf in Resources */,
+				51FC4D2422E7339000B35A4F /* orbitron-black.otf in Resources */,
+				51FC4D2822E7339B00B35A4F /* Helvetica-medium.otf in Resources */,
+				51FE841222E86CB300556CAA /* Localizable.strings in Resources */,
+				51FC4D2922E7339E00B35A4F /* Helvetica-bold.ttf in Resources */,
+				AF36019322DEF5EC0083BF0A /* Main.storyboard in Resources */,
+				51970A4922E8259100279CCA /* MyLaunchImage.png.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A233B647EBAA050F361FCDD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TrafficParkingViolationRules-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79074E937733109EF9140CAA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TrafficParkingViolationRules/Pods-TrafficParkingViolationRules-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TrafficParkingViolationRules/Pods-TrafficParkingViolationRules-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TrafficParkingViolationRules/Pods-TrafficParkingViolationRules-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF36018622DEF5EC0083BF0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				518D2D7F22E9B33700B8A966 /* VideoSavePopUpViewController.swift in Sources */,
+				51970A5C22E8636400279CCA /* PasswordSetViewController.swift in Sources */,
+				51A88BE822EEAA1000CE6318 /* TransitionAnimator.swift in Sources */,
+				51A88BF922EEAA5200CE6318 /* CGContext+CGImage.swift in Sources */,
+				51B9CC6122E6E17A0027D474 /* UIInterFaceController.swift in Sources */,
+				51FE841422E86D9A00556CAA /* BlurPasswordLoginViewController.swift in Sources */,
+				51A88BE022EEAA1000CE6318 /* PresentationController.swift in Sources */,
+				51A88BE322EEAA1000CE6318 /* PopupDialogDefaultView.swift in Sources */,
+				51A88BFA22EEAA5200CE6318 /* CaptureQuality.swift in Sources */,
+				51A88BFD22EEAA5200CE6318 /* BlurLayer.swift in Sources */,
+				51A8325C22F022490007C3AC /* PasswordGetViewController.swift in Sources */,
+				51FC4D2322E725F900B35A4F /* NewUserPasswordViewController.swift in Sources */,
+				51A88BE622EEAA1000CE6318 /* PopupDialogButton.swift in Sources */,
+				51970A5022E833BE00279CCA /* videoCollectionViewCell.swift in Sources */,
+				51A88BF822EEAA5200CE6318 /* CGImage+Accelerate.swift in Sources */,
+				51B9CC6E22E6EEB20027D474 /* NewUserEmailViewController.swift in Sources */,
+				51A88BEE22EEAA1000CE6318 /* PopupDialogContainerView.swift in Sources */,
+				51A88BED22EEAA1000CE6318 /* PresentationManager.swift in Sources */,
+				51A88BE722EEAA1000CE6318 /* UIViewController+Visibility.swift in Sources */,
+				51A88BE222EEAA1000CE6318 /* UIView+Animations.swift in Sources */,
+				51A88BE922EEAA1000CE6318 /* PopupDialog+Keyboard.swift in Sources */,
+				51B9CC6322E6E53A0027D474 /* HowCanAssetViewController.swift in Sources */,
+				51A88BFE22EEAA5200CE6318 /* DynamicBlurView.swift in Sources */,
+				518D2D8122E9B8AA00B8A966 /* BaseClassViewController.swift in Sources */,
+				51A88BE122EEAA1000CE6318 /* UIImageView+Calculations.swift in Sources */,
+				51A88BCC22EEA60700CE6318 /* ApiEndPoints.swift in Sources */,
+				51970A4D22E8329900279CCA /* VideoCollectionViewController.swift in Sources */,
+				51A88BFC22EEAA5200CE6318 /* UIImage+Blur.swift in Sources */,
+				51A88BDF22EEAA1000CE6318 /* InteractiveTransition.swift in Sources */,
+				51A88BE522EEAA1000CE6318 /* PopupDialogOverlayView.swift in Sources */,
+				51A88BEC22EEAA1000CE6318 /* PopupDialogDefaultButtons.swift in Sources */,
+				51FE841622E86DB700556CAA /* MyPasswordUIValidation.swift in Sources */,
+				51A88BEA22EEAA1000CE6318 /* PopupDialogDefaultViewController.swift in Sources */,
+				51FE841022E86C0900556CAA /* extension.swift in Sources */,
+				51970A4422E8189D00279CCA /* ForgotPasswordViewController.swift in Sources */,
+				51A88BEB22EEAA1000CE6318 /* TransitionAnimations.swift in Sources */,
+				AF3601A422DF1FDF0083BF0A /* TrafficCamera_VC.swift in Sources */,
+				51A88BFB22EEAA5200CE6318 /* TrackingMode.swift in Sources */,
+				AF36018E22DEF5EC0083BF0A /* AppDelegate.swift in Sources */,
+				51A88BE422EEAA1000CE6318 /* PopupDialog.swift in Sources */,
+				AF3601A222DF009D0083BF0A /* Login_VC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AF36019122DEF5EC0083BF0A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF36019222DEF5EC0083BF0A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AF36019622DEF5EE0083BF0A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF36019722DEF5EE0083BF0A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AF36019A22DEF5EE0083BF0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AF36019B22DEF5EE0083BF0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AF36019D22DEF5EE0083BF0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7061EE13E8C2BF71899CE7A1 /* Pods-TrafficParkingViolationRules.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8Z93NLXT6X;
+				INFOPLIST_FILE = TrafficParkingViolationRules/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ks.LegalMeTraffic.com;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = legalMe_trafficDev;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AF36019E22DEF5EE0083BF0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F6557A615E8CE45665784A2 /* Pods-TrafficParkingViolationRules.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8Z93NLXT6X;
+				INFOPLIST_FILE = TrafficParkingViolationRules/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ks.LegalMeTraffic.com;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = legalMe_trafficDev;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF36018522DEF5EC0083BF0A /* Build configuration list for PBXProject "TrafficParkingViolationRules" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF36019A22DEF5EE0083BF0A /* Debug */,
+				AF36019B22DEF5EE0083BF0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF36019C22DEF5EE0083BF0A /* Build configuration list for PBXNativeTarget "TrafficParkingViolationRules" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF36019D22DEF5EE0083BF0A /* Debug */,
+				AF36019E22DEF5EE0083BF0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AF36018222DEF5EC0083BF0A /* Project object */;
+}

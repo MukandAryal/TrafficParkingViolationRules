@@ -16,6 +16,8 @@ class VideoCollectionViewController: BaseClassViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let colors: [UIColor] = [UIColor(red: 16/254, green: 57/254, blue: 136/254, alpha: 1.0), UIColor(red: 60/254, green: 81/254, blue: 136/254, alpha: 1.0)]
+        navigationController?.navigationBar.setGradientBackground(colors: colors)  
         let nib = UINib(nibName: "videoCollectionViewCell", bundle: nil)
         videoCollectionView?.register(nib, forCellWithReuseIdentifier: "videoCollectionViewCell")
         loginVCID = isBlurUI ? "BlurPasswordLoginViewController" : "PasswordLoginViewController"

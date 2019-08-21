@@ -22,12 +22,12 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     @IBOutlet weak var startRecordingBtn: UIButton!
     @IBOutlet weak var description_Lbl: UILabel!
     @IBOutlet weak var descriptionHeading_Lbl: UILabel!
-    @IBOutlet weak var recording_ViewConstraints: NSLayoutConstraint!
+    @IBOutlet weak var textView_heightConstraints: NSLayoutConstraint!
     
+    @IBOutlet weak var recordingStartStop_lbl: UILabel!
     @IBOutlet weak var recording_btn: UIButton!
-    
-    @IBOutlet weak var infoView_heightConstraints: NSLayoutConstraint!
     @IBOutlet weak var camara_Btn: UIButton!
+    @IBOutlet weak var duration_countHeight: NSLayoutConstraint!
     
     let captureSession = AVCaptureSession()
     
@@ -68,26 +68,54 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     //var outputPath = NSString(format: "%@/output.mp4",tmpdir)//String(format: "%@/output.mp4",tmpdir)//"\(tmpdir)output.mp4"
     //var outputURL = NSURL(fileURLWithPath:outputPath as String)!
     //var captureSession = AVCaptureSession()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUiInterface()
+        let colors: [UIColor] = [UIColor(red: 16/254, green: 57/254, blue: 136/254, alpha: 1.0), UIColor(red: 60/254, green: 81/254, blue: 136/254, alpha: 1.0)]
+        navigationController?.navigationBar.setGradientBackground(colors: colors) 
+    }
+    
+    func setUiInterface(){
+        setNavigationBackgroundColor()
+        description_userTxtView.text = "1. Uplon request, show them your driver's license,registration, and proof of insurance. In certain cases, your car can be searched without a warrant as long as the police have probablecause. To protect yourself later,you should make it clear that you do not consent to a search.it is not lawful for police to arrest you simply for refusing to consent to a search."
+        textView_heightConstraints.constant = 158
+        duration_countHeight.constant = 0
         durationTxt.isHidden = true
-        self.navigationController?.isNavigationBarHidden = true
         if setupSession() {
             setupPreview()
             startSession()
         }
-        
         recording_btn.addTarget(self, action: #selector(recordingStart), for: .touchUpInside)
-        
-        
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        //        let videoCameraView = FSVideoCameraView.instance()
-        //        videoCameraView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        //        self.view.addSubview(videoCameraView)
-        //createSession()//
+        let gesture = UITapGestureRecognizer(target: self, action: Selector(("someAction:")))
+        // or for swift 2 +
+        let gestureSwift2AndHigher = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
+        self.myView.addGestureRecognizer(gesture)
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    @objc func someAction(_ sender:UITapGestureRecognizer){
+        // do other task
+        print("touchBegain>>>>>>>.")
+        durationTxt.isHidden = false
+        recording_btn.isHidden = false
+        startTimerCount()
+    }
+    
+    func startTimerCount(){
+        _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
+            self.durationTxt.isHidden = true
+            self.recording_btn.isHidden = true
+        }
+    }
+    
+    @objc func update(){
+        
+    }
+
     
     func showCustomDialog(animated: Bool = true) {
         
@@ -113,31 +141,24 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         }
         exitVc!.no_btn.addTargetClosure { _ in
             popup.dismiss()
-//            self.stopTimer()
-//            resetTimerToZero()
+            //            self.stopTimer()
+            //            resetTimerToZero()
         }
         
         present(popup, animated: animated, completion: nil)
     }
-    
-     func startTimer(){
-        
-        // if you want the timer to reset to 0 every time the user presses record you can uncomment out either of these 2 lines
-        
-        // timeSec = 0
-        // timeMin = 0
-        
+
+    func startTimer(){
         // If you don't use the 2 lines above then the timer will continue from whatever time it was stopped at
         let timeNow = String(format: "%02d:%02d", timeMin, timeSec)
         durationTxt.text = timeNow
-        
         stopTimer() // stop it at it's current time before starting it again
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             self?.timerTick()
         }
     }
     
-   func timerTick(){
+    func timerTick(){
         timeSec += 1
         
         if timeSec == 60{
@@ -146,8 +167,11 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         }
         
         let timeNow = String(format: "%02d:%02d", timeMin, timeSec)
-        
         durationTxt.text = timeNow
+        if timeNow == "00:05"{
+            durationTxt.isHidden = true
+            recording_btn.isHidden = true
+        }
     }
     
     // resets both vars back to 0 and when the timer starts again it will start at 0
@@ -159,17 +183,15 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     
     // if you need to reset the timer to 0 and yourLabel.txt back to 00:00
     func resetTimerAndLabel(){
-    
-    resetTimerToZero()
-    durationTxt.text = String(format: "%02d:%02d", timeMin, timeSec)
+        
+        resetTimerToZero()
+        durationTxt.text = String(format: "%02d:%02d", timeMin, timeSec)
     }
     
     // stops the timer at it's current time
     func stopTimer(){
-    timer?.invalidate()
+        timer?.invalidate()
     }
-    
-    
     
     func setupPreview() {
         // Configure previewLayer
@@ -236,8 +258,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     
     //MARK:- Camera Session
     func startSession() {
-        
-        
         if !captureSession.isRunning {
             videoQueue().async {
                 self.captureSession.startRunning()
@@ -256,9 +276,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     func videoQueue() -> DispatchQueue {
         return DispatchQueue.main
     }
-    
-    
-    
+
     func currentVideoOrientation() -> AVCaptureVideoOrientation {
         var orientation: AVCaptureVideoOrientation
         
@@ -326,18 +344,18 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
             outputURL = tempURL()
             movieOutput.startRecording(to: outputURL, recordingDelegate: self as! AVCaptureFileOutputRecordingDelegate)
             
-//            self.seconds = 0
-//            self.durationTimer = Timer(timeInterval: 1.0, target: self, selector: #selector(self.refreshDurationLabel), userInfo: nil, repeats: true)
-//            RunLoop.current.add(self.durationTimer!, forMode: RunLoop.Mode.common)
-//            self.durationTimer?.fire()
+            //            self.seconds = 0
+            //            self.durationTimer = Timer(timeInterval: 1.0, target: self, selector: #selector(self.refreshDurationLabel), userInfo: nil, repeats: true)
+            //            RunLoop.current.add(self.durationTimer!, forMode: RunLoop.Mode.common)
+            //            self.durationTimer?.fire()
             startTimer()
             
         }
         else {
-//            self.durationTimer?.invalidate()
-//            self.durationTimer = nil
-//            self.seconds = 0
-//            self.durationTxt.text = secondsToFormatTimeFull(second: 0)
+            //            self.durationTimer?.invalidate()
+            //            self.durationTimer = nil
+            //            self.seconds = 0
+            //            self.durationTxt.text = secondsToFormatTimeFull(second: 0)
             stopTimer()
             stopRecording()
         }
@@ -385,18 +403,21 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         let pathString = outputFileURL.relativePath
         url = NSURL.fileURL(withPath: pathString) as NSURL
         print(url)
-//        self.durationTimer?.invalidate()
-//        self.durationTimer = nil
-//        self.seconds = 0
-//        self.durationTxt.text = secondsToFormatTimeFull(second: 0)
+        //        self.durationTimer?.invalidate()
+        //        self.durationTimer = nil
+        //        self.seconds = 0
+        //        self.durationTxt.text = secondsToFormatTimeFull(second: 0)
     }
     
     @objc func recordingStart(sender:UIButton!) {
         print("start Recording>>>>")
+        recordingStartStop_lbl.text = "Prep"
         durationTxt.isHidden = false
-        description_Lbl.isHidden = true
+        description_userTxtView.isHidden = true
         descriptionHeading_Lbl.isHidden = true
-        description_Lbl.text = ""
+        description_userTxtView.text = ""
+        textView_heightConstraints.constant = 0
+        duration_countHeight.constant = 20
         startRecordingBtn.isHidden = true
         startRecording()
     }
@@ -404,6 +425,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     @objc func recordingStop(sender:UIButton!) {
         self.showCustomDialog()
         stopRecording()
+        recordingStartStop_lbl.text = "Video Stopped"
         print("stop Recording>>>>")
     }
     
@@ -427,15 +449,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         let obj = self.storyboard?.instantiateViewController(withIdentifier: "HowCanAssetViewController") as! HowCanAssetViewController
         self.navigationController?.pushViewController(obj, animated: true)
     }
-    
-    @IBAction func actionLogoutBtn(_ sender: Any) {
-        UserDefaults.standard.removeObject(forKey: "loginEmailId")
-        UserDefaults.standard.removeObject(forKey: "loginPassword")
-        UserDefaults.standard.removeObject(forKey: "passCodeSet")
-        let obj = self.storyboard?.instantiateViewController(withIdentifier: "Login_VC") as! Login_VC
-        self.navigationController?.pushViewController(obj, animated: true)
-    }
-    
     
     @objc func refreshDurationLabel() {
         

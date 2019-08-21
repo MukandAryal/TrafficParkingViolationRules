@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class HowCanAssetViewController: BaseClassViewController {
     @IBOutlet weak var trafficViolationBtn: UIButton!
@@ -23,20 +24,30 @@ class HowCanAssetViewController: BaseClassViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSideMenu()
         viewInit()
-         loginVCID = isBlurUI ? "PasswordSetViewController" : "PasswordLoginViewController"
+        loginVCID = isBlurUI ? "PasswordSetViewController" : "PasswordLoginViewController"
+        let colors: [UIColor] = [UIColor(red: 16/254, green: 57/254, blue: 136/254, alpha: 1.0), UIColor(red: 60/254, green: 81/254, blue: 136/254, alpha: 1.0)]
+        navigationController?.navigationBar.setGradientBackground(colors: colors)
+    }
+    
+    private func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.default.leftMenuNavigationController = storyboard?.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController
+        SideMenuManager.default.addPanGestureToPresent(toView: navigationController!.navigationBar)
+        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
     }
     
     override func viewWillAppear(_ animated: Bool) {
          viewInit()
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func viewInit(){
+      //  setNavigationBackgroundColor()
         self.setButtonBorder(button: trafficViolationBtn, borderWidth: 2, borderColor: appUiInerFace.textFieldBorderColor)
         self.setViewBorder(view: trafficOuter_BorderView, borderWidth: 2, borderColor: appUiInerFace.textFieldOutBorderColor)
         self.setViewBorder(view: trafficInner_borderView, borderWidth: 2, borderColor: appUiInerFace.textFieldInBorderColor)
-        
         self.setViewBorder(view: parkingViolationBtn, borderWidth: 2, borderColor: appUiInerFace.textFieldBorderColor)
         self.setViewBorder(view: parkingOuter_borderView, borderWidth: 2, borderColor: appUiInerFace.textFieldOutBorderColor)
         self.setViewBorder(view: parkingInner_borderView, borderWidth: 2, borderColor: appUiInerFace.textFieldInBorderColor)
@@ -57,14 +68,14 @@ class HowCanAssetViewController: BaseClassViewController {
             self.navigationController?.pushViewController(obj, animated: true)
         }else{
          let obj = self.storyboard?.instantiateViewController(withIdentifier: "PasswordSetViewController") as! PasswordSetViewController
-           obj.modalPresentationStyle = .none
+          // obj.modalPresentationStyle = .none
             self.navigationController?.pushViewController(obj, animated: true)
             // present(loginVCID)
         }
     }
     
     @IBAction func actionParkingVioationBtn(_ sender: Any) {
-//        let obj = self.storyboard?.instantiateViewController(withIdentifier: "VideoCollectionViewController") as! VideoCollectionViewController
-//        self.navigationController?.pushViewController(obj, animated: true)
+        let obj = self.storyboard?.instantiateViewController(withIdentifier: "VideoCollectionViewController") as! VideoCollectionViewController
+        self.navigationController?.pushViewController(obj, animated: true)
     }
 }

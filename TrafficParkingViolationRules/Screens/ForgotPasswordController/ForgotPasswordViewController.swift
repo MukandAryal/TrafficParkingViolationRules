@@ -21,29 +21,9 @@ class ForgotPasswordViewController: BaseClassViewController {
     @IBOutlet weak var backInner_borderView: UIView!
     @IBOutlet weak var back_Btn: UIButton!
     
-       //MARK:- viewDidLoad
+    //MARK:- viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-//        email_txtField.layer.borderWidth = 2
-//        email_txtField.layer.borderColor = appUiInerFace.textFieldBorderColor
-//        emailBorder_outerView.layer.borderWidth = 2
-//        emailBorder_outerView.layer.borderColor = appUiInerFace.textFieldOutBorderColor
-//        emailBorder_innerView.layer.borderWidth = 2
-//        emailBorder_innerView.layer.borderColor = appUiInerFace.textFieldOutBorderColor
-//        
-//        reset_Btn.layer.borderWidth = 2
-//        reset_Btn.layer.borderColor = appUiInerFace.textFieldBorderColor
-//        resetBtnBorder_outerView.layer.borderWidth = 2
-//        resetBtnBorder_outerView.layer.borderColor = appUiInerFace.textFieldOutBorderColor
-//        resetBtnBorder_innerView.layer.borderWidth = 2
-//        resetBtnBorder_innerView.layer.borderColor = appUiInerFace.textFieldInBorderColor
-//        
-//        backOuter_borderView.layer.borderWidth = 2
-//        backOuter_borderView.layer.borderColor = appUiInerFace.textFieldOutBorderColor
-//        backInner_borderView.layer.borderWidth = 2
-//        backInner_borderView.layer.borderColor = appUiInerFace.textFieldInBorderColor
-//        back_Btn.layer.borderWidth = 2
-//        back_Btn.layer.borderColor = appUiInerFace.textFieldBorderColor
         email_txtField.setLeftPaddingPoints(10)
         viewInit()
     }
@@ -82,29 +62,24 @@ class ForgotPasswordViewController: BaseClassViewController {
                     let alert = UIAlertController(title: "Alert", message:mstStr, preferredStyle: UIAlertController.Style.alert);                      alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                     self.email_txtField.text = ""
                     self.present(alert, animated: true, completion: nil)
-                    }
                 }
-          }
+        }
+    }
     
-     //MARK:- UIButton Actions
+    //MARK:- UIButton Actions
     @IBAction func actionResetBtn(_ sender: Any) {
         if email_txtField.text == "" {
-            let alert = UIAlertController(title: "Alert", message:"please enter email id!", preferredStyle: UIAlertController.Style.alert);                      alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            showAlert(title: "Alert!", message: "please enter email id!")
         }else if email_txtField.text != nil {
             if !isValidEmail(testStr: email_txtField.text!)  {
-                let alert = UIAlertController(title: "Alert", message: "Please enter valid email id!", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                showAlert(title: "Alert!", message: "Please enter valid email id!")
             }else{
                 if Connectivity.isConnectedToInternet() {
                     forgotPassword()
                 } else {
-                    let alert = UIAlertController(title: "No Internet!", message: "Please check your internet connection", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+                    showAlert(title: "Alert!", message: "lease check your internet connection")
                 }
-          }
+            }
         }
     }
     

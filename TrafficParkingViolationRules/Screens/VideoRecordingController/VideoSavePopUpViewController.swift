@@ -16,6 +16,8 @@ class VideoSavePopUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // let colors: [UIColor] = [ UIColor(red: 16/254, green: 57/254, blue: 136/254, alpha: 1.0),  UIColor(red: 60/254, green: 81/254, blue: 136/254, alpha: 1.0)]
+      //  navigationController?.navigationBar.setGradientBackground(colors: colors)
      //   yes_Btn.layer.borderWidth = 2
        // yes_Btn.layer.borderColor = appUiInerFace.textFieldInBorderColor
         

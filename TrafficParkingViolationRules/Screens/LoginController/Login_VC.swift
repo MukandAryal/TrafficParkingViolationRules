@@ -27,6 +27,8 @@ class Login_VC: BaseClassViewController {
     override func viewDidLoad() {
         viewInit()
         self.navigationController?.isNavigationBarHidden = true
+        let colors: [UIColor] = [UIColor(red: 16/254, green: 57/254, blue: 136/254, alpha: 1.0), UIColor(red: 60/254, green: 81/254, blue: 136/254, alpha: 1.0)]
+        navigationController?.navigationBar.setGradientBackground(colors: colors)
     }
     
     func viewInit(){
@@ -42,6 +44,8 @@ class Login_VC: BaseClassViewController {
         txtField_email.setLeftPaddingPoints(10)
         txtField_password.setLeftPaddingPoints(10)
         signInBtn.backgroundColor = appUiInerFace.appBackGroundColor
+        txtField_email.text = "vipan@gmail.com"
+        txtField_password.text = "vipan@123"
     }
     
     //MARK:- Api
@@ -62,6 +66,7 @@ class Login_VC: BaseClassViewController {
                 if let resultDict = response.value as? NSDictionary{
                     if let dataDict = resultDict["data"] as? NSDictionary{
                         if let tokenStr = dataDict["token"] {
+                            print("tokenStr>>>>>>",tokenStr)
                             let token = dataDict["token"] as? String
                             UserDefaults.standard.set(token, forKey: "loginToken")
                             DispatchQueue.main.async {
@@ -84,6 +89,7 @@ class Login_VC: BaseClassViewController {
                 }
         }
     }
+
     
     //MARK:- UIButton Actions
     @IBAction func didPress_signIn(_ sender: UIButton) {
@@ -95,6 +101,8 @@ class Login_VC: BaseClassViewController {
         }else{
             if Connectivity.isConnectedToInternet() {
                 loginApi()
+                //proceedWithCameraAccess(identifier: "")
+                //self.proceedWithMicroPhoneAccess(identifier: "")
             } else {
                 showAlert(title: "No Internet!", message: "Please check your internet connection")
             }

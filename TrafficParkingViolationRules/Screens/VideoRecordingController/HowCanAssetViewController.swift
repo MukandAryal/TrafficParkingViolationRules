@@ -19,9 +19,9 @@ class HowCanAssetViewController: BaseClassViewController {
     
     //MARK: Property
     let isBlurUI = true
-    
     var loginVCID: String!
     
+    //MARK: view DidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSideMenu()
@@ -31,6 +31,7 @@ class HowCanAssetViewController: BaseClassViewController {
         navigationController?.navigationBar.setGradientBackground(colors: colors)
     }
     
+    //MARK: setupSideMenu
     private func setupSideMenu() {
         // Define the menus
         SideMenuManager.default.leftMenuNavigationController = storyboard?.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController
@@ -38,11 +39,13 @@ class HowCanAssetViewController: BaseClassViewController {
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
     }
     
+        //MARK: view WillAppear
     override func viewWillAppear(_ animated: Bool) {
          viewInit()
         self.navigationController?.isNavigationBarHidden = false
     }
     
+      //MARK: setUp Interface
     func viewInit(){
       //  setNavigationBackgroundColor()
         self.setButtonBorder(button: trafficViolationBtn, borderWidth: 2, borderColor: appUiInerFace.textFieldBorderColor)
@@ -53,14 +56,14 @@ class HowCanAssetViewController: BaseClassViewController {
         self.setViewBorder(view: parkingInner_borderView, borderWidth: 2, borderColor: appUiInerFace.textFieldInBorderColor)
     }
     
+     //MARK: present
     func present(_ id: String) {
         let loginVC = storyboard?.instantiateViewController(withIdentifier: id)
-        // in iOS 10, the crossDissolve transtion is wired
-        //        loginVC?.modalTransitionStyle = .crossDissolve
         loginVC?.modalPresentationStyle = .none
         present(loginVC!, animated: true, completion: nil)
     }
     
+     //MARK: Button Action
     @IBAction func actionTrafficVioationBtn(_ sender: Any) {
         let passwordSetStr = UserDefaults.standard.string(forKey: "passCodeSet")
         if passwordSetStr != nil{

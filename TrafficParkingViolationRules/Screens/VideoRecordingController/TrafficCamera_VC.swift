@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import MobileCoreServices
+import Alamofire
 
 
 
@@ -23,7 +24,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     @IBOutlet weak var description_Lbl: UILabel!
     @IBOutlet weak var descriptionHeading_Lbl: UILabel!
     @IBOutlet weak var textView_heightConstraints: NSLayoutConstraint!
-    
     @IBOutlet weak var recordingStartStop_lbl: UILabel!
     @IBOutlet weak var recording_btn: UIButton!
     @IBOutlet weak var camara_Btn: UIButton!
@@ -44,30 +44,9 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     var seconds: Int!
     var durationTimer: Timer?
     var videoURL: URL!
-    
     var timeMin = 0
     var timeSec = 0
     weak var timer: Timer?
-    
-    /*var session: AVCaptureSession?
-     var device: AVCaptureDevice?
-     var input: AVCaptureDeviceInput?
-     var output: AVCaptureMetadataOutput?
-     var prevLayer: AVCaptureVideoPreviewLayer?
-     var movieOutput = AVCaptureMovieFileOutput()
-     let fileOutput = AVCaptureMovieFileOutput()
-     var documentsPathurl = NSString()
-     var outputPath = ""
-     var outputURL = NSURL()*/
-    // captureSession.addOutput(videoCaptureOutput)
-    // documentsPathurl = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-    //let outputPath = "\(documentsPathurl)/output.mp4"
-    //let outputFileUrl = NSURL(fileURLWithPath: outputPath)
-    
-    //var tmpdir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-    //var outputPath = NSString(format: "%@/output.mp4",tmpdir)//String(format: "%@/output.mp4",tmpdir)//"\(tmpdir)output.mp4"
-    //var outputURL = NSURL(fileURLWithPath:outputPath as String)!
-    //var captureSession = AVCaptureSession()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,13 +68,54 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         recording_btn.addTarget(self, action: #selector(recordingStart), for: .touchUpInside)
         let gesture = UITapGestureRecognizer(target: self, action: Selector(("someAction:")))
         // or for swift 2 +
-        let gestureSwift2AndHigher = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
         self.myView.addGestureRecognizer(gesture)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
+    
+    func videoUploadApi(password:String,title:String,description:String,video:URL?){
+        self.showCustomProgress()
+        let api  = Configurator.baseURL + ApiEndPoints.uploadFile
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                multipartFormData.append(password.data(using: String.Encoding.utf8)!, withName: "password")
+                multipartFormData.append(title.data(using: String.Encoding.utf8)!, withName: "type")
+                multipartFormData.append(description.data(using: String.Encoding.utf8)!, withName: "description")
+                if let url = video {
+                    print(url)
+                    let dataVideo = NSData(contentsOf: url as URL)!
+                    print(dataVideo)
+                    multipartFormData.append(dataVideo as Data , withName: "video" , fileName: "\(String(NSDate().timeIntervalSince1970).replacingOccurrences(of: ".", with: "")).acc", mimeType: "audio/aac")
+                    
+                }
+                print(multipartFormData)
+        },
+            to:api,
+            encodingCompletion: { encodingResult in
+                
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        //   print(response)
+                        self.stopProgress()
+                        var resultDict = response.value as? [String:Any]
+                        if let sucessStr = resultDict!["success"] as? Bool{
+                            print("sucess>>>>",sucessStr)
+                        }
+                        }
+                        .uploadProgress { progress in // main queue by default
+                            print("Upload Progress: \(progress.fractionCompleted)")
+                    }
+                    return
+                case .failure(let encodingError):
+                    debugPrint(encodingError)
+                    self.stopProgress()
+                }
+        })
+    }
+    
     
     @objc func someAction(_ sender:UITapGestureRecognizer){
         // do other task
@@ -111,11 +131,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
             self.recording_btn.isHidden = true
         }
     }
-    
-    @objc func update(){
-        
-    }
-
     
     func showCustomDialog(animated: Bool = true) {
         
@@ -147,7 +162,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         
         present(popup, animated: animated, completion: nil)
     }
-
+    
     func startTimer(){
         // If you don't use the 2 lines above then the timer will continue from whatever time it was stopped at
         let timeNow = String(format: "%02d:%02d", timeMin, timeSec)
@@ -201,10 +216,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         myView.layer.addSublayer(previewLayer)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //prevLayer?.frame.size = myView.frame.size//
-    }
     
     func movePassCodeView(){
         let obj = self.storyboard?.instantiateViewController(withIdentifier: "PasswordGetViewController") as! PasswordGetViewController
@@ -276,7 +287,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     func videoQueue() -> DispatchQueue {
         return DispatchQueue.main
     }
-
+    
     func currentVideoOrientation() -> AVCaptureVideoOrientation {
         var orientation: AVCaptureVideoOrientation
         
@@ -343,19 +354,9 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
             //EDIT2: And I forgot this
             outputURL = tempURL()
             movieOutput.startRecording(to: outputURL, recordingDelegate: self as! AVCaptureFileOutputRecordingDelegate)
-            
-            //            self.seconds = 0
-            //            self.durationTimer = Timer(timeInterval: 1.0, target: self, selector: #selector(self.refreshDurationLabel), userInfo: nil, repeats: true)
-            //            RunLoop.current.add(self.durationTimer!, forMode: RunLoop.Mode.common)
-            //            self.durationTimer?.fire()
             startTimer()
-            
         }
         else {
-            //            self.durationTimer?.invalidate()
-            //            self.durationTimer = nil
-            //            self.seconds = 0
-            //            self.durationTxt.text = secondsToFormatTimeFull(second: 0)
             stopTimer()
             stopRecording()
         }
@@ -383,11 +384,8 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
             
             videoURL = outputURL! as URL
             print("videoRecorder>>>>>>",videoURL)
-            
             //  performSegue(withIdentifier: "showVideo", sender: videoRecorded)
-            
         }
-        
     }
     
     
@@ -403,10 +401,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         let pathString = outputFileURL.relativePath
         url = NSURL.fileURL(withPath: pathString) as NSURL
         print(url)
-        //        self.durationTimer?.invalidate()
-        //        self.durationTimer = nil
-        //        self.seconds = 0
-        //        self.durationTxt.text = secondsToFormatTimeFull(second: 0)
     }
     
     @objc func recordingStart(sender:UIButton!) {
@@ -529,188 +523,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
             print(error)
         }
     }
-    //    class func deviceWithMediaType(mediaType: String, preferringPosition position: AVCaptureDevicePosition) -> AVCaptureDevice {
-    //        let devices = AVCaptureDevice.devices//devices(withMediaType: mediaType) as![AVCaptureDevice?]
-    //        var captureDevice = devices.first
-    //        for device in devices {
-    //            if device?.position == position {
-    //                captureDevice = device
-    //                break
-    //            }
-    //        }
-    //        return captureDevice!!
-    //    }
     
-    /*func createSession() {
-     session = AVCaptureSession()
-     device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-     let error: NSError? = nil
-     do{
-     input = try AVCaptureDeviceInput(device: device)//AVCaptureDeviceInput(device: device, error: &error)
-     if error == nil {
-     session?.addInput(input)
-     } else {
-     NSLog("camera input error: \(error)")
-     }
-     
-     prevLayer = AVCaptureVideoPreviewLayer(session: session)
-     prevLayer?.frame.size = myView.frame.size
-     prevLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-     
-     prevLayer?.connection.videoOrientation = transformOrientation(orientation: UIInterfaceOrientation(rawValue: UIApplication.shared.statusBarOrientation.rawValue)!)
-     
-     myView.layer.addSublayer(prevLayer!)
-     // add output movieFileOutput
-     movieOutput.movieFragmentInterval = kCMTimeInvalid
-     session?.addOutput(movieOutput)
-     
-     // start session
-     session?.commitConfiguration()
-     
-     session?.startRunning()
-     }
-     catch {
-     print(error)
-     }
-     }
-     
-     func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-     print("touch")
-     // start capture
-     //movieOutput.startRecordingToOutputFileURL(outputFileUrl, recordingDelegate: self)
-     
-     }
-     
-     func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-     print("release")
-     //stop capture
-     movieOutput.stopRecording()
-     }
-     
-     func cameraWithPosition(position: AVCaptureDevicePosition) -> AVCaptureDevice? {
-     //let devices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
-     if #available(iOS 10.2, *) {
-     
-     return AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera,
-     mediaType: AVMediaTypeVideo,
-     position: position)
-     } else {
-     // Fallback on earlier versions
-     let devices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
-     for device in devices! {
-     if (device as AnyObject).position == position {
-     return device as? AVCaptureDevice
-     }
-     }
-     }
-     
-     return nil
-     }
-     
-     func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-     coordinator.animate(alongsideTransition: { (context) -> Void in
-     self.prevLayer?.connection.videoOrientation = self.transformOrientation(orientation: UIInterfaceOrientation(rawValue: UIApplication.shared.statusBarOrientation.rawValue)!)
-     self.prevLayer?.frame.size = self.myView.frame.size
-     }, completion: { (context) -> Void in
-     
-     })
-     //super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-     super.viewWillTransition(to: size, with: coordinator)
-     }
-     
-     func transformOrientation(orientation: UIInterfaceOrientation) -> AVCaptureVideoOrientation {
-     switch orientation {
-     case .landscapeLeft:
-     return .landscapeLeft
-     case .landscapeRight:
-     return .landscapeRight
-     case .portraitUpsideDown:
-     return .portraitUpsideDown
-     default:
-     return .portrait
-     }
-     }
-     
-     @IBAction func switchCameraSide(sender: AnyObject) {
-     if let sess = session {
-     let currentCameraInput: AVCaptureInput = sess.inputs[0] as! AVCaptureInput
-     sess.removeInput(currentCameraInput)
-     var newCamera: AVCaptureDevice
-     if (currentCameraInput as! AVCaptureDeviceInput).device.position == .back {
-     newCamera = self.cameraWithPosition(position: .front)!
-     } else {
-     newCamera = self.cameraWithPosition(position: .back)!
-     }
-     do{
-     let newVideoInput = try AVCaptureDeviceInput(device: newCamera)//AVCaptureDeviceInput(device: newCamera, error: nil)
-     session?.addInput(newVideoInput)
-     }
-     catch {
-     print(error)
-     }
-     
-     }
-     }
-     
-     @IBAction func click(_ sender: Any) {
-     if let sess = session {
-     let currentCameraInput: AVCaptureInput = sess.inputs[0] as! AVCaptureInput
-     sess.removeInput(currentCameraInput)
-     var newCamera: AVCaptureDevice
-     if (currentCameraInput as! AVCaptureDeviceInput).device.position == .back {
-     newCamera = self.cameraWithPosition(position: .front)!
-     } else {
-     newCamera = self.cameraWithPosition(position: .back)!
-     }
-     do{
-     let newVideoInput = try AVCaptureDeviceInput(device: newCamera)//AVCaptureDeviceInput(device: newCamera, error: nil)
-     session?.addInput(newVideoInput)
-     }
-     catch {
-     print(error)
-     }
-     
-     }
-     }
-     override func didReceiveMemoryWarning() {
-     super.didReceiveMemoryWarning()
-     // Dispose of any resources that can be recreated.
-     }
-     
-     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-     print(outputFileURL)
-     let pathString = outputFileURL.relativePath
-     
-     let url = NSURL.fileURL(withPath: pathString)
-     print(url)
-     stopRecording()
-     }
-     
-     func startRecording() {
-     
-     ///stuff you'd do to start the recording including deleting
-     ///your temp file if it exists from the last recording session
-     ////SET OUTPUT URL AND PATH. DELETE ANY FILE THAT EXISTS THERE
-     let tmpdir = NSTemporaryDirectory()
-     outputPath = "\(tmpdir)output.mov"
-     outputURL = NSURL(fileURLWithPath:outputPath as String)
-     let filemgr = FileManager.default
-     if filemgr.fileExists(atPath: outputPath) {
-     //filemgr.removeItemAtPath(outputPath, error: nil)
-     do{
-     try filemgr.removeItem(atPath: outputPath)
-     }
-     catch
-     {
-     print(error)
-     }
-     }
-     movieOutput.startRecording(toOutputFileURL: outputURL as URL!, recordingDelegate: self)
-     }
-     
-     func stopRecording()
-     {
-     movieOutput.stopRecording()
-     }*/
 }
 

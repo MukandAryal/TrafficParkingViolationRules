@@ -78,7 +78,7 @@ class Login_VC: BaseClassViewController {
                         }else {
                             let msgStr = dataDict["msg"] as? String
                             self.showAlert(title: "Alert!", message: msgStr ?? "")
-                             self.stopProgress()
+                            self.stopProgress()
                         }
                     }
                     else {
@@ -89,7 +89,6 @@ class Login_VC: BaseClassViewController {
                 }
         }
     }
-
     
     //MARK:- UIButton Actions
     @IBAction func didPress_signIn(_ sender: UIButton) {
@@ -101,8 +100,6 @@ class Login_VC: BaseClassViewController {
         }else{
             if Connectivity.isConnectedToInternet() {
                 loginApi()
-                //proceedWithCameraAccess(identifier: "")
-                //self.proceedWithMicroPhoneAccess(identifier: "")
             } else {
                 showAlert(title: "No Internet!", message: "Please check your internet connection")
             }

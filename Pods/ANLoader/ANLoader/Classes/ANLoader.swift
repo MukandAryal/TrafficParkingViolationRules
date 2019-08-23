@@ -31,7 +31,7 @@ public struct ANLoader {
     public static var showFadeOutAnimation = false
     public static var pulseAnimation = true
     public static var activityColor: UIColor = UIColor.white
-    public static var activityBackgroundColor: UIColor = UIColor.lightText
+    public static var activityBackgroundColor: UIColor = UIColor(red: 60/254, green: 81/254, blue: 136/254, alpha: 1.0)
     public static var activityTextColor: UIColor = UIColor.white
     public static var activityTextFontName: UIFont = UIFont.systemFont(ofSize: 23)
     fileprivate static var activityWidth = (UIScreen.screenWidth / widthDivision) / 2

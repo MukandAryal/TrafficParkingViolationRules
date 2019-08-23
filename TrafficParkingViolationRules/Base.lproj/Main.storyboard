@@ -1664,6 +1664,7 @@
                     <size key="freeformSize" width="600" height="900"/>
                     <connections>
                         <outlet property="passwordStackView" destination="Oce-S0-GwY" id="qz1-eb-7UR"/>
+                        <outlet property="password_lbl" destination="5we-Pn-Ngj" id="AQI-01-cU9"/>
                         <segue destination="8Tz-ma-IcZ" kind="show" identifier="setPassword" id="cRX-gU-LNK"/>
                     </connections>
                 </viewController>

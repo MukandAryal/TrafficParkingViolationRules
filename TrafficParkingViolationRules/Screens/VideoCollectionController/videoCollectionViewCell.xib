@@ -22,12 +22,21 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoconcept2-4" translatesAutoresizingMaskIntoConstraints="NO" id="t0O-S7-nB9">
                         <rect key="frame" x="0.0" y="0.0" width="231" height="163"/>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_icon" translatesAutoresizingMaskIntoConstraints="NO" id="vZt-Sx-gIe">
+                        <rect key="frame" x="10" y="10" width="30" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="30u-yH-sPa"/>
+                            <constraint firstAttribute="height" constant="15" id="Y1n-wJ-ubA"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="t0O-S7-nB9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="2Cr-8y-Q0l"/>
                 <constraint firstAttribute="trailing" secondItem="t0O-S7-nB9" secondAttribute="trailing" id="Ej5-gY-RJp"/>
                 <constraint firstItem="t0O-S7-nB9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Xja-0m-7qP"/>
+                <constraint firstItem="vZt-Sx-gIe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="hB6-ci-LMN"/>
+                <constraint firstItem="vZt-Sx-gIe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="tA9-MK-TFK"/>
                 <constraint firstAttribute="bottom" secondItem="t0O-S7-nB9" secondAttribute="bottom" id="xsL-Ue-bl3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -39,6 +48,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="logoconcept2-4" width="360" height="360"/>
+        <image name="logoconcept2-4" width="1801" height="1801"/>
+        <image name="video_icon" width="32" height="32"/>
     </resources>
 </document>

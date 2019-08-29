@@ -28,6 +28,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     @IBOutlet weak var recording_btn: UIButton!
     @IBOutlet weak var camara_Btn: UIButton!
     @IBOutlet weak var duration_countHeight: NSLayoutConstraint!
+    @IBOutlet weak var video_title: UITextField!
     
     let captureSession = AVCaptureSession()
     
@@ -59,6 +60,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         setNavigationBackgroundColor()
         description_userTxtView.text = "1. Uplon request, show them your driver's license,registration, and proof of insurance. In certain cases, your car can be searched without a warrant as long as the police have probablecause. To protect yourself later,you should make it clear that you do not consent to a search.it is not lawful for police to arrest you simply for refusing to consent to a search."
         textView_heightConstraints.constant = 158
+       // description_userTxtView.isEditable = false
         duration_countHeight.constant = 0
         durationTxt.isHidden = true
         if setupSession() {
@@ -73,47 +75,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     
     override func viewDidDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
-    }
-    
-    func videoUploadApi(password:String,title:String,description:String,video:URL?){
-        self.showCustomProgress()
-        let api  = Configurator.baseURL + ApiEndPoints.uploadFile
-        Alamofire.upload(
-            multipartFormData: { multipartFormData in
-                multipartFormData.append(password.data(using: String.Encoding.utf8)!, withName: "password")
-                multipartFormData.append(title.data(using: String.Encoding.utf8)!, withName: "type")
-                multipartFormData.append(description.data(using: String.Encoding.utf8)!, withName: "description")
-                if let url = video {
-                    print(url)
-                    let dataVideo = NSData(contentsOf: url as URL)!
-                    print(dataVideo)
-                    multipartFormData.append(dataVideo as Data , withName: "video" , fileName: "\(String(NSDate().timeIntervalSince1970).replacingOccurrences(of: ".", with: "")).acc", mimeType: "audio/aac")
-                    
-                }
-                print(multipartFormData)
-        },
-            to:api,
-            encodingCompletion: { encodingResult in
-                
-                switch encodingResult {
-                case .success(let upload, _, _):
-                    upload.responseJSON { response in
-                        //   print(response)
-                        self.stopProgress()
-                        var resultDict = response.value as? [String:Any]
-                        if let sucessStr = resultDict!["success"] as? Bool{
-                            print("sucess>>>>",sucessStr)
-                        }
-                        }
-                        .uploadProgress { progress in // main queue by default
-                            print("Upload Progress: \(progress.fractionCompleted)")
-                    }
-                    return
-                case .failure(let encodingError):
-                    debugPrint(encodingError)
-                    self.stopProgress()
-                }
-        })
     }
     
     
@@ -175,12 +136,10 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     
     func timerTick(){
         timeSec += 1
-        
         if timeSec == 60{
             timeSec = 0
             timeMin += 1
         }
-        
         let timeNow = String(format: "%02d:%02d", timeMin, timeSec)
         durationTxt.text = timeNow
         if timeNow == "00:05"{
@@ -212,13 +171,19 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         // Configure previewLayer
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = myView.bounds
-        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        previewLayer.videoGravity = AVLayerVideoGravity.resize
         myView.layer.addSublayer(previewLayer)
     }
     
     
     func movePassCodeView(){
         let obj = self.storyboard?.instantiateViewController(withIdentifier: "PasswordGetViewController") as! PasswordGetViewController
+            print("videoUrl>>>>>>>>",videoURL)
+            if videoURL != nil{
+            obj.videoUrl = videoURL
+            obj.videoTitle = video_title.text!
+            obj.videoDescription = description_userTxtView.text!
+        }
         self.navigationController?.pushViewController(obj, animated: true)
     }
     
@@ -308,7 +273,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     func startCapture() {
         
         startRecording()
-        
     }
     
     //EDIT 1: I FORGOT THIS AT FIRST
@@ -408,7 +372,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         recordingStartStop_lbl.text = "Prep"
         durationTxt.isHidden = false
         description_userTxtView.isHidden = true
-        descriptionHeading_Lbl.isHidden = true
         description_userTxtView.text = ""
         textView_heightConstraints.constant = 0
         duration_countHeight.constant = 20

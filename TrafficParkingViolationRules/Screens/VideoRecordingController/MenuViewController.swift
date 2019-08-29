@@ -45,12 +45,16 @@ class MenuViewController: BaseClassViewController {
     @IBAction func actionAudioAcessBtn(_ sender: Any) {
         UIApplication.shared.openURL(NSURL(string: UIApplication.openSettingsURLString)! as URL)
         dismiss(animated: true, completion: nil)
-
     }
     
     @IBAction func actionVideoAcessBtn(_ sender: UISwitch){
         UIApplication.shared.openURL(NSURL(string: UIApplication.openSettingsURLString)! as URL)
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func actionForgotSecurityCode(_ sender: Any) {
+        let obj = self.storyboard?.instantiateViewController(withIdentifier: "ForgotSecurityCodeViewController") as! ForgotSecurityCodeViewController
+        self.navigationController?.pushViewController(obj, animated: true)
     }
     
     @IBAction func actionLogoutBtn(_ sender: Any) {

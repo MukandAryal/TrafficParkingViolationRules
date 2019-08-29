@@ -18,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
+        
         if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
             statusBar.backgroundColor = UIColor(red: 31/254, green: 65/254, blue: 125/254, alpha: 1.0)
         }
-        
         var initialViewController: UIViewController?
         let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         if let username = UserDefaults.standard.value(forKey: "loginEmailId"), let password = UserDefaults.standard.value(forKey: "loginPassword") {

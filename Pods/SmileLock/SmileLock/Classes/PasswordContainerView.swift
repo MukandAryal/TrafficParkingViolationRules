@@ -169,14 +169,14 @@ open class PasswordContainerView: UIView {
     //MARK: IBAction
     @IBAction func deleteInputString(_ sender: AnyObject) {
         #if swift(>=3.2)
-            guard inputString.count > 0 && !passwordDotView.isFull else {
-                return
-            }
+//            guard inputString.count > 0 && !passwordDotView.isFull else {
+//                return
+//            }
             inputString = String(inputString.dropLast())
         #else
-            guard inputString.characters.count > 0 && !passwordDotView.isFull else {
-            return
-            }
+//            guard inputString.characters.count > 0 && !passwordDotView.isFull else {
+//            return
+//            }
             inputString = String(inputString.characters.dropLast())
         #endif
     }

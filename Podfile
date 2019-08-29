@@ -11,5 +11,5 @@ target 'TrafficParkingViolationRules' do
   pod 'SDWebImage'
   pod 'ANLoader'
   pod 'SideMenu'
-  
+  pod 'SDWebImage'
 end

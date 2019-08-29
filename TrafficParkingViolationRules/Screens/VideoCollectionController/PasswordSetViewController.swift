@@ -14,7 +14,7 @@ class PasswordSetViewController: BaseClassViewController {
     
      //MARK: Outlets
     @IBOutlet weak var passwordStackView: UIStackView!
-    
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var password_lbl: UILabel!
     //MARK: Property
     var passwordContainerView: PasswordContainerView!
@@ -31,6 +31,7 @@ class PasswordSetViewController: BaseClassViewController {
         //customize password UI
         passwordContainerView.tintColor = UIColor.color(.textColor)
         passwordContainerView.highlightedColor = appUiInerFace.appColor
+        saveButton.isEnabled = false
     }
     
      //MARK:- view WillAppear
@@ -106,12 +107,12 @@ class PasswordSetViewController: BaseClassViewController {
         self.showCustomProgress()
         let api = Configurator.baseURL + ApiEndPoints.setPassword
         Alamofire.request(api, method: .post, parameters: param,encoding: JSONEncoding.default, headers: headers)
-            .responseData { responseData in
-                print(responseData.data)
+            .responseJSON { response in
+            print(response)
                 DispatchQueue.main.async {
                     self.stopProgress()
                 }
-                if let resultDict = responseData.value as? NSDictionary{
+                if let resultDict = response.value as? NSDictionary{
                         if let sucessStr = resultDict["success"] as? Bool{
                             print(sucessStr)
                             if sucessStr{
@@ -131,7 +132,9 @@ class PasswordSetViewController: BaseClassViewController {
                 }
         }
     }
-    
+    @IBAction func actionSaveButton(_ sender: Any) {
+        passwordSet()
+    }
     
     //MARK:- Button Action
     @IBAction func actionBackBtn(_ sender: Any) {
@@ -167,8 +170,8 @@ private extension PasswordSetViewController {
     
     func validationSuccess() {
         print("*️⃣ success!")
-        passwordSet()
         UserDefaults.standard.set(inputCodeStr, forKey: "passCodeSet")
+        saveButton.isEnabled = true
     }
     
     func validationFail() {

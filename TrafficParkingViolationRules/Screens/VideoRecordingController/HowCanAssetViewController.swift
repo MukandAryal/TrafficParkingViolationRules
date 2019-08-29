@@ -9,7 +9,7 @@
 import UIKit
 import SideMenu
 
-class HowCanAssetViewController: BaseClassViewController {
+class HowCanAssetViewController: BaseClassViewController{
     @IBOutlet weak var trafficViolationBtn: UIButton!
     @IBOutlet weak var parkingViolationBtn: UIButton!
     @IBOutlet weak var trafficOuter_BorderView: UIView!
@@ -20,6 +20,8 @@ class HowCanAssetViewController: BaseClassViewController {
     //MARK: Property
     let isBlurUI = true
     var loginVCID: String!
+    var imagePicker = UIImagePickerController()
+    var videoURL: NSURL?
     
     //MARK: view DidLoad
     override func viewDidLoad() {
@@ -78,7 +80,28 @@ class HowCanAssetViewController: BaseClassViewController {
     }
     
     @IBAction func actionParkingVioationBtn(_ sender: Any) {
-        let obj = self.storyboard?.instantiateViewController(withIdentifier: "VideoCollectionViewController") as! VideoCollectionViewController
-        self.navigationController?.pushViewController(obj, animated: true)
+      //  let obj = self.storyboard?.instantiateViewController(withIdentifier: "VideoCollectionViewController") as! VideoCollectionViewController
+      //  self.navigationController?.pushViewController(obj, animated: true)
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        imagePicker.mediaTypes = ["public.image", "public.movie"]
+        
+        present(imagePicker, animated: true, completion: nil)
     }
+//
+//    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+//        self.dismiss(animated: true, completion: { () -> Void in
+//
+//        })
+//
+//       // imageView.image = image
+//    }
+}
+    
+    extension HowCanAssetViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+            videoURL = info[UIImagePickerControllerMediaURL] as? URL
+            print("videoURL:\(String(describing: videoURL))")
+            self.dismiss(animated: true, completion: nil)
+        }
 }

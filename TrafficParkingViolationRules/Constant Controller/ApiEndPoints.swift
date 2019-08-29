@@ -13,8 +13,9 @@ let SuccessCode: NSNumber = 200
 let FailureCode: NSNumber = 99
 
 class Configurator: NSObject {
-    static let baseURL = "http://3.13.127.23/index.php/api/"
+    static let baseURL = "http://3.13.127.23/api/"
     static let videoUploadUrl = "http://3.13.127.23/api/"
+    static let imageBaseUrl = "http://3.13.127.23/uploads/"
 }
 
 class ApiEndPoints: NSObject {

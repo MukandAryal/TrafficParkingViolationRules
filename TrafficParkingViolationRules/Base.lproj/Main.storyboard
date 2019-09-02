@@ -423,7 +423,7 @@
                                 <rect key="frame" x="0.0" y="223.5" width="375" height="220"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audio Access Allow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqA-4g-UGr">
-                                        <rect key="frame" x="10" y="18" width="275" height="15.5"/>
+                                        <rect key="frame" x="10" y="19" width="275" height="13"/>
                                         <fontDescription key="fontDescription" name="Orbitron-Medium" family="Orbitron" pointSize="13"/>
                                         <color key="textColor" red="0.97444790601730347" green="0.74242299795150757" blue="0.30870410799980164" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -438,13 +438,13 @@
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video Access Allow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKU-De-9nk">
-                                        <rect key="frame" x="10" y="83.5" width="275" height="15.5"/>
+                                        <rect key="frame" x="10" y="82" width="275" height="13"/>
                                         <fontDescription key="fontDescription" name="Orbitron-Medium" family="Orbitron" pointSize="13"/>
                                         <color key="textColor" red="0.97444790599999997" green="0.742422998" blue="0.30870410799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0qA-QX-dBg">
-                                        <rect key="frame" x="295" y="75.5" width="52" height="31"/>
+                                        <rect key="frame" x="295" y="73" width="52" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="kEE-i0-uLT"/>
                                         </constraints>
@@ -453,7 +453,7 @@
                                         </connections>
                                     </switch>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08Y-UU-PFO">
-                                        <rect key="frame" x="10" y="133.5" width="355" height="40"/>
+                                        <rect key="frame" x="10" y="132" width="355" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="u7j-W5-0gG"/>
                                         </constraints>
@@ -466,7 +466,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNp-1d-cLo">
-                                        <rect key="frame" x="10" y="183.5" width="355" height="40"/>
+                                        <rect key="frame" x="10" y="182" width="355" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="BYK-DU-Ret"/>
                                         </constraints>
@@ -995,7 +995,7 @@
                                                     <action selector="didPress_signIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Qv-18-Lhb"/>
                                                 </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9r-oS-2XK">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9r-oS-2XK">
                                                 <rect key="frame" x="20" y="572" width="335" height="158"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="158" id="rAk-CI-s21"/>
@@ -1005,7 +1005,7 @@
                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ID YOU'RE STOPPED IN CAR" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kHm-6K-VJl">
+                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ID YOU'RE STOPPED IN CAR" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kHm-6K-VJl">
                                                 <rect key="frame" x="50" y="480" width="275" height="22"/>
                                                 <color key="textColor" red="0.8926979303" green="0.70373171570000004" blue="0.42475575209999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>

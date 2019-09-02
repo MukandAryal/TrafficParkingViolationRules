@@ -372,6 +372,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         recordingStartStop_lbl.text = "Prep"
         durationTxt.isHidden = false
         description_userTxtView.isHidden = true
+        video_title.isHidden = true
         description_userTxtView.text = ""
         textView_heightConstraints.constant = 0
         duration_countHeight.constant = 20
@@ -466,7 +467,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         self.durationTimer = nil
         self.seconds = 0
         self.durationTxt.text = secondsToFormatTimeFull(second: 0)
-        stopRecording()
+        //stopRecording()
         
         let currentCameraInput: AVCaptureInput = captureSession.inputs[0] as! AVCaptureInput
         captureSession.removeInput(currentCameraInput)

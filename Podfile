@@ -12,4 +12,6 @@ target 'TrafficParkingViolationRules' do
   pod 'ANLoader'
   pod 'SideMenu'
   pod 'SDWebImage'
+  pod "TLPhotoPicker"
+  pod "SwiftCompressor"
 end

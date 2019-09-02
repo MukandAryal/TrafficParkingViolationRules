@@ -7,6 +7,8 @@ PODS:
   - SDWebImage/Core (4.4.5)
   - SideMenu (6.2.2)
   - SmileLock (3.0.6)
+  - SwiftCompressor (0.2.1)
+  - TLPhotoPicker (1.9.7)
 
 DEPENDENCIES:
   - Alamofire
@@ -15,6 +17,8 @@ DEPENDENCIES:
   - SDWebImage
   - SideMenu
   - SmileLock
+  - SwiftCompressor
+  - TLPhotoPicker
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -24,6 +28,8 @@ SPEC REPOS:
     - SDWebImage
     - SideMenu
     - SmileLock
+    - SwiftCompressor
+    - TLPhotoPicker
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -32,7 +38,9 @@ SPEC CHECKSUMS:
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
   SideMenu: ba47df99f8efc13848b5b67c11a88a770280ab03
   SmileLock: f9d8a44861dbdd1d2e48525577fb5dc0e9c2d314
+  SwiftCompressor: ebad85a0494f7a4f6e0ade26746e050cab7c990a
+  TLPhotoPicker: 5b2396f402688b6868636263ebe6f4aeb8a2fdff
 
-PODFILE CHECKSUM: 4c9ddcf2748b8844876e6067442fcaaf048d1954
+PODFILE CHECKSUM: 70809f4dc6541a230b023e3b8904e994d635d0bc
 
 COCOAPODS: 1.7.5

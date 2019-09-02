@@ -23,9 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Application uses camera to capture video</string>
+	<string>You need Usage Camera Description</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app requires to access your microphone to record video</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You need Usage Photo Description</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>orbitron-black.otf</string>

@@ -167,6 +167,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SmileLock/SmileLock.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftCompressor/SwiftCompressor.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/ANLoader/ANLoader.framework"
@@ -175,6 +177,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SmileLock/SmileLock.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftCompressor/SwiftCompressor.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

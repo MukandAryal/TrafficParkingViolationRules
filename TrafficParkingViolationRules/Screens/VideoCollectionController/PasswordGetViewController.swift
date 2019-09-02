@@ -11,13 +11,15 @@ import SmileLock
 import Alamofire
 import AVFoundation
 
+
 class PasswordGetViewController: BaseClassViewController {
     
     @IBOutlet weak var passwordStackView: UIStackView!
     
     var passCodeGetStr = String()
-    
+    var parkingVideoUrl = URL(string: "https://www.apple.com")
     var videoUrl = URL(string: "https://www.apple.com")
+    var parkingImg = UIImage()
     var videoTitle = String()
     var videoDescription = String()
     
@@ -26,13 +28,21 @@ class PasswordGetViewController: BaseClassViewController {
     let kPasswordDigit = 6
     var inputCodeStr = String()
     var thumbnail = UIImage()
+    let compressedURL = NSURL.fileURL(withPath: NSTemporaryDirectory() + NSUUID().uuidString + ".mp4")
+    var compressedFileData : Data? =  nil
     
     
     //MARK:- view DidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         print("videoUrl>>>>>",videoUrl)
+        print("uiimage>>>>>",parkingImg)
+        // let trafficViloation = UserDefaults.standard.string(forKey: "trafficViolation")
+        //if trafficViloation == "trafficViolation"{
         generateThumbnail(path: videoUrl!)
+        // }else{
+        //   generateThumbnail(path: parkingVideoUrl!)
+        //}
         //create PasswordContainerView
         passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
         passwordContainerView.delegate = self
@@ -49,6 +59,7 @@ class PasswordGetViewController: BaseClassViewController {
         navigationController?.navigationBar.setGradientBackground(colors: colors)
     }
     
+    //MARK:- GetVideo Through Thumbnail Image
     func generateThumbnail(path: URL) -> UIImage? {
         do {
             let asset = AVURLAsset(url: path, options: nil)
@@ -64,22 +75,36 @@ class PasswordGetViewController: BaseClassViewController {
         }
     }
     
-    //MARK:- Api
+    func compressVideo(inputURL: URL, outputURL: URL, handler:@escaping (_ exportSession: AVAssetExportSession?)-> Void) {
+        let urlAsset = AVURLAsset(url: inputURL, options: nil)
+        guard let exportSession = AVAssetExportSession(asset: urlAsset, presetName: AVAssetExportPresetMediumQuality) else {
+            handler(nil)
+            return
+        }
+        
+        exportSession.outputURL = outputURL
+        exportSession.outputFileType = AVFileType.mp4 //AVFileTypeQuickTimeMovie (m4v)
+        exportSession.shouldOptimizeForNetworkUse = true
+        exportSession.exportAsynchronously { () -> Void in
+            handler(exportSession)
+        }
+    }
+    
+    //MARK:- passwordMatchApi
     func passwordMatchApi(){
         let authToken = "Bearer" + " " + UserDefaults.standard.string(forKey: "loginToken")!
         let param: [String: String] = [
             "password" : passCodeGetStr
         ]
-        
-        let headers =  [
+        let head =  [
             "Authorization": authToken,
             "Accept": "application/json"
         ]
-        print(headers)
+        print(head)
         print(param)
-        self.showCustomProgress()
+        // self.showCustomProgress()
         let api = Configurator.baseURL + ApiEndPoints.getUploadedFiles
-        Alamofire.request(api, method: .post, parameters: param,encoding: JSONEncoding.default, headers: (headers as! HTTPHeaders))
+        Alamofire.request(api, method: .post, parameters: param,encoding: JSONEncoding.default, headers: head)
             .responseJSON { response in
                 print(response)
                 DispatchQueue.main.async {
@@ -91,8 +116,15 @@ class PasswordGetViewController: BaseClassViewController {
                         if sucessStr{
                             print("video upload sucesss")
                             let authToken = "Bearer" + " " + UserDefaults.standard.string(forKey: "loginToken")!
-                            self.videoUploadApi(password: self.passCodeGetStr, title: self.videoTitle, description: self.videoDescription, authtoken: authToken, accept: "application/json", thumbnail: self.thumbnail, video: self.videoUrl)
-    
+                            let parkingViolation = UserDefaults.standard.string(forKey: "trafficViolation")
+                            if parkingViolation == "trafficViolation"{
+                                self.videoUploadApi(password: self.passCodeGetStr, title: self.videoTitle, description: self.videoDescription, authtoken: authToken, accept: "application/json", thumbnail: self.thumbnail, type: "Trafic", video: self.compressedFileData! as NSData)
+                            }else if parkingViolation == "parkingViolation" {
+                                self.videoUploadApi(password: self.passCodeGetStr, title: self.videoTitle, description: self.videoDescription, authtoken: authToken, accept: "application/json", thumbnail: self.thumbnail, type: "Parking", video: self.compressedFileData! as NSData)
+                            }else{
+                                self.imageUploadApi(password: self.passCodeGetStr, title: self.videoTitle, description: self.videoDescription, authtoken: authToken, accept: "application/json", type: "Parking", thumbnail:self.parkingImg, image: self.parkingImg)
+                            }
+                            
                         }else {
                             self.showAlert(title: "Alert!", message: "Provide valid cradencials")
                             self.stopProgress()
@@ -107,8 +139,29 @@ class PasswordGetViewController: BaseClassViewController {
         }
     }
     
+    func apiCall(){
+        compressVideo(inputURL: videoUrl!, outputURL: compressedURL, handler: { (_ exportSession: AVAssetExportSession?) -> Void in
+            self.showCustomProgress()
+            switch exportSession!.status {
+            case .completed:
+                
+                print("Video compressed successfully")
+                do {
+                    self.compressedFileData = try Data(contentsOf: exportSession!.outputURL!)
+                    // Call upload function here using compressedFileData
+                    self.passwordMatchApi()
+                } catch _ {
+                    print ("Error converting compressed file to Data")
+                }
+                
+            default:
+                print("Could not compress video")
+            }
+        } )
+    }
     
-    func videoUploadApi(password:String,title:String,description:String,authtoken:String,accept:String,thumbnail:UIImage,video:URL?){
+    //MARK:- Traffic VideoLoadApi
+    func videoUploadApi(password:String,title:String,description:String,authtoken:String,accept:String,thumbnail:UIImage,type:String,video:NSData){
         // self.showCustomProgress()
         let api  = Configurator.baseURL + ApiEndPoints.uploadFile
         Alamofire.upload(
@@ -116,14 +169,20 @@ class PasswordGetViewController: BaseClassViewController {
                 multipartFormData.append(password.data(using: String.Encoding.utf8)!, withName: "password")
                 multipartFormData.append(title.data(using: String.Encoding.utf8)!, withName: "title")
                 multipartFormData.append(description.data(using: String.Encoding.utf8)!, withName: "description")
-                 let url = video
-                    if url != nil{
-                    let dataVideo = NSData(contentsOf: url!)
-                        multipartFormData.append(dataVideo! as Data , withName: "video" , fileName: "\(String(NSDate().timeIntervalSince1970).replacingOccurrences(of: ".", with: "")).mov", mimeType: "mov")
-                }
-                let imgData = thumbnail.jpegData(compressionQuality: 0.5)
-                    multipartFormData.append(imgData!, withName: "thumbnail", fileName: "\(String(NSDate().timeIntervalSince1970).replacingOccurrences(of: ".", with: "")).jpeg", mimeType: "image/jpeg")
+                multipartFormData.append(type.data(using: String.Encoding.utf8)!, withName: "type")
+                // let url = video
+                //  if let url = video {
+                // print(url)
+                //  let dataVideo = NSData(contentsOf: url as URL)!
+                // print(dataVideo)
+                multipartFormData.append(self.compressedFileData! , withName: "video" , fileName: "\(String(NSDate().timeIntervalSince1970).replacingOccurrences(of: ".", with: "")).mov", mimeType: "video/mp4")
+                
                 print(multipartFormData)
+                // }
+                if  let imgData = thumbnail.jpegData(compressionQuality: 0.5){
+                    multipartFormData.append(imgData, withName: "thumbnail", fileName: "\(String(NSDate().timeIntervalSince1970).replacingOccurrences(of: ".", with: "")).jpeg", mimeType: "image/jpeg")
+                    print(multipartFormData)
+                }
         },
             to:api,headers:["Authorization": authtoken,"Accept":accept],
             encodingCompletion: { encodingResult in
@@ -151,6 +210,52 @@ class PasswordGetViewController: BaseClassViewController {
         })
     }
     
+    //MARK:- parking upLoadApi
+    func imageUploadApi(password:String,title:String,description:String,authtoken:String,accept:String,type:String,thumbnail:UIImage,image:UIImage){
+        // self.showCustomProgress()
+        let api  = Configurator.baseURL + ApiEndPoints.uploadFile
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                multipartFormData.append(password.data(using: String.Encoding.utf8)!, withName: "password")
+                multipartFormData.append(title.data(using: String.Encoding.utf8)!, withName: "title")
+                multipartFormData.append(description.data(using: String.Encoding.utf8)!, withName: "description")
+                if let imgData = image.jpegData(compressionQuality: 0.5){
+                    multipartFormData.append(imgData, withName: "video", fileName: "\(String(NSDate().timeIntervalSince1970).replacingOccurrences(of: ".", with: "")).jpeg", mimeType: "image/jpeg")
+                    print(multipartFormData)
+                }
+                if let imgData = thumbnail.jpegData(compressionQuality: 0.5){
+                    multipartFormData.append(imgData, withName: "thumbnail", fileName: "\(String(NSDate().timeIntervalSince1970).replacingOccurrences(of: ".", with: "")).jpeg", mimeType: "image/jpeg")
+                    print(multipartFormData)
+                }
+        },
+            to:api,headers:["Authorization": authtoken,"Accept":accept],
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        print(response)
+                        self.stopProgress()
+                        var resultDict = response.value as? [String:Any]
+                        if let sucessStr = resultDict!["success"] as? Bool{
+                            print("sucess>>>>",sucessStr)
+                            let obj = self.storyboard?.instantiateViewController(withIdentifier: "HowCanAssetViewController") as! HowCanAssetViewController
+                            self.navigationController?.pushViewController(obj, animated: true)
+                            self.showAlert(title: "Alert", message: "File Uploaded Successfully")
+                        }
+                        }
+                        .uploadProgress { progress in // main queue by default
+                            print("Upload Progress: \(progress.fractionCompleted)")
+                    }
+                    return
+                case .failure(let encodingError):
+                    debugPrint(encodingError)
+                    self.stopProgress()
+                }
+        })
+    }
+    
+    
+    
     //MARK:- Button Action
     @IBAction func actionBackBtn(_ sender: Any) {
         let obj = self.storyboard?.instantiateViewController(withIdentifier: "HowCanAssetViewController") as! HowCanAssetViewController
@@ -158,6 +263,7 @@ class PasswordGetViewController: BaseClassViewController {
     }
 }
 
+//MARK:- Password Input CompleteProtocol
 extension PasswordGetViewController: PasswordInputCompleteProtocol {
     func passwordInputComplete(_ passwordContainerView: PasswordContainerView, input: String) {
         if validation(input) {
@@ -176,6 +282,7 @@ extension PasswordGetViewController: PasswordInputCompleteProtocol {
     }
 }
 
+//MARK:- Password validation
 private extension PasswordGetViewController {
     func validation(_ input: String) -> Bool {
         passCodeGetStr = input
@@ -183,7 +290,8 @@ private extension PasswordGetViewController {
     }
     func validationSuccess() {
         print("*️⃣ success!")
-        passwordMatchApi()
+        //passwordMatchApi()
+        apiCall()
     }
     
     func validationFail() {

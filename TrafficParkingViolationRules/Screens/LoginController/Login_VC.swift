@@ -44,8 +44,8 @@ class Login_VC: BaseClassViewController {
         txtField_email.setLeftPaddingPoints(10)
         txtField_password.setLeftPaddingPoints(10)
         signInBtn.backgroundColor = appUiInerFace.appBackGroundColor
-      //  txtField_email.text = "vipan@gmail.com"
-     //   txtField_password.text = "vipan@123"
+//        txtField_email.text = "vipan@gmail.com"
+//        txtField_password.text = "vipan@123"
     }
     
     //MARK:- Api

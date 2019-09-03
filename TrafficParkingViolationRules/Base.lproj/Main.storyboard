@@ -1642,7 +1642,7 @@
         <scene sceneID="Zqd-9k-KYa">
             <objects>
                 <viewController storyboardIdentifier="PasswordSetViewController" id="iDd-LC-vx9" customClass="PasswordSetViewController" customModule="TrafficParkingViolationRules" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" alpha="0.69999999999999996" contentMode="scaleToFill" id="BOJ-6r-C1T">
+                    <view key="view" contentMode="scaleToFill" id="BOJ-6r-C1T">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1771,7 +1771,7 @@
         <scene sceneID="3mY-SW-HNP">
             <objects>
                 <viewController storyboardIdentifier="PasswordGetViewController" id="cgX-YT-TUD" customClass="PasswordGetViewController" customModule="TrafficParkingViolationRules" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" alpha="0.69999998807907104" contentMode="scaleToFill" id="jts-GU-FJo">
+                    <view key="view" contentMode="scaleToFill" id="jts-GU-FJo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

@@ -35,14 +35,9 @@ class PasswordGetViewController: BaseClassViewController {
     //MARK:- view DidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("videoUrl>>>>>",videoUrl)
+        print("videoUrl>>>>>",videoUrl ?? "")
         print("uiimage>>>>>",parkingImg)
-        // let trafficViloation = UserDefaults.standard.string(forKey: "trafficViolation")
-        //if trafficViloation == "trafficViolation"{
         generateThumbnail(path: videoUrl!)
-        // }else{
-        //   generateThumbnail(path: parkingVideoUrl!)
-        //}
         //create PasswordContainerView
         passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
         passwordContainerView.delegate = self
@@ -115,10 +110,11 @@ class PasswordGetViewController: BaseClassViewController {
                         print(sucessStr)
                         if sucessStr{
                             print("video upload sucesss")
+                            print("compressedFileData>>>>>>>>>",self.compressedFileData)
                             let authToken = "Bearer" + " " + UserDefaults.standard.string(forKey: "loginToken")!
                             let parkingViolation = UserDefaults.standard.string(forKey: "trafficViolation")
                             if parkingViolation == "trafficViolation"{
-                                self.videoUploadApi(password: self.passCodeGetStr, title: self.videoTitle, description: self.videoDescription, authtoken: authToken, accept: "application/json", thumbnail: self.thumbnail, type: "Trafic", video: self.compressedFileData! as NSData)
+                                self.videoUploadApi(password: self.passCodeGetStr, title: self.videoTitle, description: "checking video", authtoken: authToken, accept: "application/json", thumbnail: self.thumbnail, type: "Trafic", video: self.compressedFileData! as NSData)
                             }else if parkingViolation == "parkingViolation" {
                                 self.videoUploadApi(password: self.passCodeGetStr, title: self.videoTitle, description: self.videoDescription, authtoken: authToken, accept: "application/json", thumbnail: self.thumbnail, type: "Parking", video: self.compressedFileData! as NSData)
                             }else{
@@ -127,6 +123,7 @@ class PasswordGetViewController: BaseClassViewController {
                             
                         }else {
                             self.showAlert(title: "Alert!", message: "Provide valid cradencials")
+                            self.passwordContainerView.clearInput()
                             self.stopProgress()
                         }
                     }
@@ -140,6 +137,7 @@ class PasswordGetViewController: BaseClassViewController {
     }
     
     func apiCall(){
+        print("videoUrl>>>>>>>>>>>>>>>>>",videoUrl)
         compressVideo(inputURL: videoUrl!, outputURL: compressedURL, handler: { (_ exportSession: AVAssetExportSession?) -> Void in
             self.showCustomProgress()
             switch exportSession!.status {
@@ -156,6 +154,7 @@ class PasswordGetViewController: BaseClassViewController {
                 
             default:
                 print("Could not compress video")
+                 self.passwordMatchApi()
             }
         } )
     }
@@ -296,7 +295,6 @@ private extension PasswordGetViewController {
     
     func validationFail() {
         print("*️⃣ failure!")
-        passwordMatchApi()
         passwordContainerView.wrongPassword()
     }
 }

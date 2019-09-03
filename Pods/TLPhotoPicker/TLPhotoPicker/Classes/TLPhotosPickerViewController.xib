@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="orbitron-medium.otf">
+            <string>Orbitron-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TLPhotosPickerViewController" customModule="TLPhotoPicker" customModuleProvider="target">
             <connections>
@@ -16,7 +21,6 @@
                 <outlet property="cancelButton" destination="sqJ-Z7-zxj" id="J6u-hz-ePK"/>
                 <outlet property="collectionView" destination="4gR-Bn-quP" id="ZOF-qU-cpd"/>
                 <outlet property="customNavItem" destination="5CU-MZ-p1K" id="ih7-d3-nco"/>
-                <outlet property="doneButton" destination="daA-Ag-vVv" id="P53-fy-Sbh"/>
                 <outlet property="emptyImageView" destination="YDZ-o1-AXT" id="TVN-0v-aQc"/>
                 <outlet property="emptyMessageLabel" destination="7qj-q4-rHC" id="Bcp-Hu-lEY"/>
                 <outlet property="emptyView" destination="HPm-Vc-F86" id="4FT-XL-9ql"/>
@@ -89,11 +93,6 @@
                                     <constraint firstItem="Ql8-7f-9Uk" firstAttribute="leading" secondItem="VAz-Py-dsa" secondAttribute="leading" id="j8K-5o-bAh"/>
                                 </constraints>
                             </view>
-                            <barButtonItem key="rightBarButtonItem" title="Done" id="daA-Ag-vVv">
-                                <connections>
-                                    <action selector="doneButtonTap" destination="-1" id="BzF-rn-rn4"/>
-                                </connections>
-                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>
@@ -216,10 +215,13 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="3JX-8O-UMz"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                            <fontDescription key="fontDescription" name="Orbitron-Medium" family="Orbitron" pointSize="16"/>
                             <state key="normal" title="Done">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="doneButtonTap" destination="-1" eventType="touchUpInside" id="8p2-0S-5CS"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

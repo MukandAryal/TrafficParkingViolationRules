@@ -28,6 +28,7 @@ class ForgotSecurityCodeViewController: BaseClassViewController {
         passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
         passwordContainerView.delegate = self
         passwordContainerView.deleteButtonLocalizedTitle = "smilelock_delete"
+        
         //customize password UI
         passwordContainerView.tintColor = UIColor.color(.textColor)
         passwordContainerView.highlightedColor = appUiInerFace.appColor
@@ -61,7 +62,7 @@ class ForgotSecurityCodeViewController: BaseClassViewController {
                         if sucessStr{
                             let obj = self.storyboard?.instantiateViewController(withIdentifier: "HowCanAssetViewController") as! HowCanAssetViewController
                            self.navigationController?.pushViewController(obj, animated: true)
-                            self.showAlert(title: "Alert!", message: "Security Code Forgot Sucessfully")
+                            self.showAlert(title: "Alert!", message: "Password change successfully")
                         }else {
                             self.showAlert(title: "Alert!", message: "sumthing wrong! please try again")
                             self.stopProgress()

@@ -60,7 +60,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         setNavigationBackgroundColor()
         description_userTxtView.text = "1. Uplon request, show them your driver's license,registration, and proof of insurance. In certain cases, your car can be searched without a warrant as long as the police have probablecause. To protect yourself later,you should make it clear that you do not consent to a search.it is not lawful for police to arrest you simply for refusing to consent to a search."
         textView_heightConstraints.constant = 158
-       // description_userTxtView.isEditable = false
         duration_countHeight.constant = 0
         durationTxt.isHidden = true
         if setupSession() {
@@ -110,17 +109,17 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         exitVc?.titleLbl.text = "Would you like to save\n this trafic video for\n legal representation?"
         exitVc!.yes_Btn.addTargetClosure { _ in
             popup.dismiss()
-            self.stopTimer()
-            self.resetTimerToZero()
-            self.stopRecording()
             self.movePassCodeView()
         }
         exitVc!.no_btn.addTargetClosure { _ in
             popup.dismiss()
-            //            self.stopTimer()
-            //            resetTimerToZero()
+            self.resetTimerToZero()
+            self.durationTxt.text = "00.00"
+            self.camara_Btn.isHidden = false
+            self.recording_btn.removeTarget(nil, action: nil, for: .allEvents)
+            self.recording_btn.addTarget(self, action: #selector(self.recordingStart), for: .touchUpInside)
+
         }
-        
         present(popup, animated: animated, completion: nil)
     }
     
@@ -178,8 +177,8 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     
     func movePassCodeView(){
         let obj = self.storyboard?.instantiateViewController(withIdentifier: "PasswordGetViewController") as! PasswordGetViewController
-            print("videoUrl>>>>>>>>",videoURL)
-            if videoURL != nil{
+        print("videoUrl>>>>>>>>",videoURL)
+        if videoURL != nil{
             obj.videoUrl = videoURL
             obj.videoTitle = video_title.text!
             obj.videoDescription = description_userTxtView.text!
@@ -188,7 +187,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     }
     
     //MARK:- Setup Camera
-    
     func setupSession() -> Bool {
         
         captureSession.sessionPreset = AVCaptureSession.Preset.high
@@ -217,13 +215,12 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
             print("Error setting device audio input: \(error)")
             return false
         }
-        movieOutput.maxRecordedDuration = CMTimeMake(value: 9, timescale: 1)
+        movieOutput.maxRecordedDuration = CMTimeMake(value: 500, timescale: 1)
         
         // Movie output
         if captureSession.canAddOutput(movieOutput) {
             captureSession.addOutput(movieOutput)
         }
-        
         return true
     }
     
@@ -305,7 +302,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
             if (device.isSmoothAutoFocusSupported) {
                 do {
                     try device.lockForConfiguration()
-                    device.isSmoothAutoFocusEnabled = false
+                    device.isSmoothAutoFocusEnabled = true
                     device.unlockForConfiguration()
                     recording_btn.addTarget(self, action: #selector(recordingStop), for: .touchUpInside)
                     
@@ -317,7 +314,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
             
             //EDIT2: And I forgot this
             outputURL = tempURL()
-            movieOutput.startRecording(to: outputURL, recordingDelegate: self as! AVCaptureFileOutputRecordingDelegate)
+            movieOutput.startRecording(to: outputURL, recordingDelegate: self as AVCaptureFileOutputRecordingDelegate)
             startTimer()
         }
         else {
@@ -341,14 +338,11 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         
         if (error != nil) {
-            
             print("Error recording movie: \(error!.localizedDescription)")
-            
         } else {
-            
             videoURL = outputURL! as URL
             print("videoRecorder>>>>>>",videoURL)
-            //  performSegue(withIdentifier: "showVideo", sender: videoRecorded)
+            movePassCodeView()
         }
     }
     
@@ -369,6 +363,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     
     @objc func recordingStart(sender:UIButton!) {
         print("start Recording>>>>")
+        camara_Btn.isHidden = true
         recordingStartStop_lbl.text = "Prep"
         durationTxt.isHidden = false
         description_userTxtView.isHidden = true
@@ -393,7 +388,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     }
     
     @IBAction func stopAction(_ sender: Any) {
-        //stopRecording()
         if movieOutput.isRecording == true
         {
             self.durationTimer?.invalidate()
@@ -427,7 +421,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         self.durationTxt.text = secondsToFormatTimeFull(second: 0)
         stopRecording()
         
-        let currentCameraInput: AVCaptureInput = captureSession.inputs[0] as! AVCaptureInput
+        let currentCameraInput: AVCaptureInput = captureSession.inputs[0]
         captureSession.removeInput(currentCameraInput)
         var newCamera: AVCaptureDevice
         if (currentCameraInput as! AVCaptureDeviceInput).device.position == .back {
@@ -453,7 +447,7 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
             let devices = AVCaptureDevice.devices(for: AVMediaType.video)
             for device in devices {
                 if (device as AnyObject).position == position {
-                    return device as? AVCaptureDevice
+                    return device
                 }
             }
         }
@@ -463,14 +457,8 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     
     
     @IBAction func cameraToogleAction(_ sender: Any) {
-        self.durationTimer?.invalidate()
-        self.durationTimer = nil
-        self.seconds = 0
-        self.durationTxt.text = secondsToFormatTimeFull(second: 0)
-        //stopRecording()
-        
-        let currentCameraInput: AVCaptureInput = captureSession.inputs[0] as! AVCaptureInput
-        captureSession.removeInput(currentCameraInput)
+        let currentCameraInput: AVCaptureInput = captureSession.inputs[0]
+        //captureSession.removeInput(currentCameraInput)
         var newCamera: AVCaptureDevice
         if (currentCameraInput as! AVCaptureDeviceInput).device.position == .back {
             newCamera = self.cameraWithPosition(position: .front)!

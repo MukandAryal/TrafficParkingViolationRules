@@ -37,8 +37,6 @@ class HowCanAssetViewController: BaseClassViewController,TLPhotosPickerViewContr
         setupSideMenu()
         viewInit()
         loginVCID = isBlurUI ? "PasswordSetViewController" : "PasswordLoginViewController"
-        let colors: [UIColor] = [UIColor(red: 16/254, green: 57/254, blue: 136/254, alpha: 1.0), UIColor(red: 60/254, green: 81/254, blue: 136/254, alpha: 1.0)]
-        navigationController?.navigationBar.setGradientBackground(colors: colors)
     }
     
     //MARK: setupSideMenu
@@ -53,6 +51,8 @@ class HowCanAssetViewController: BaseClassViewController,TLPhotosPickerViewContr
     override func viewWillAppear(_ animated: Bool) {
         viewInit()
         self.navigationController?.isNavigationBarHidden = false
+        let colors: [UIColor] = [UIColor(red: 16/254, green: 57/254, blue: 136/254, alpha: 1.0), UIColor(red: 60/254, green: 81/254, blue: 136/254, alpha: 1.0)]
+        navigationController?.navigationBar.setGradientBackground(colors: colors)
     }
     
     //MARK: setUp Interface
@@ -82,9 +82,7 @@ class HowCanAssetViewController: BaseClassViewController,TLPhotosPickerViewContr
             self.navigationController?.pushViewController(obj, animated: true)
         }else{
             let obj = self.storyboard?.instantiateViewController(withIdentifier: "PasswordSetViewController") as! PasswordSetViewController
-            // obj.modalPresentationStyle = .none
-            self.navigationController?.pushViewController(obj, animated: true)
-            // present(loginVCID)
+            self.navigationController?.pushViewController(obj, animated: false)
         }
     }
     
@@ -97,10 +95,10 @@ class HowCanAssetViewController: BaseClassViewController,TLPhotosPickerViewContr
         }
         var configure = TLPhotosPickerConfigure()
         configure.numberOfColumn = 3
+        configure.singleSelectedMode = true
         viewController.configure = configure
         viewController.selectedAssets = self.selectedAssets
         viewController.logDelegate = self
-        
         self.present(viewController, animated: true, completion: nil)
     }
     
@@ -121,7 +119,7 @@ class HowCanAssetViewController: BaseClassViewController,TLPhotosPickerViewContr
         self.selectedAssets = withTLPHAssets
         getFirstSelectedImage()
         //iCloud or video
-        //        getAsyncCopyTemporaryFile()
+        // getAsyncCopyTemporaryFile()
     }
     
     func exportVideo() {
@@ -131,7 +129,6 @@ class HowCanAssetViewController: BaseClassViewController,TLPhotosPickerViewContr
             }) { (url, mimeType) in
                 print("completion\(url)")
                 self.parkingVideoUrl = url
-                print("parkingVideoUrl>>>>>>>",self.parkingVideoUrl)
                 print(mimeType)
                 self.movePassCodeView()
             }

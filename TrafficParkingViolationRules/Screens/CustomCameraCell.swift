@@ -269,6 +269,7 @@ class CustomCameraCell: TLPhotoCollectionViewCell, AVCaptureFileOutputRecordingD
             }
         }
         
+        
         var success = true
         
         if error != nil {

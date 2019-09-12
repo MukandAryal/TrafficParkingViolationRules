@@ -18,7 +18,7 @@ class PasswordSetViewController: BaseClassViewController {
     @IBOutlet weak var password_lbl: UILabel!
     //MARK: Property
     var passwordContainerView: PasswordContainerView!
-    let kPasswordDigit = 6
+    let kPasswordDigit = 4
     var inputCodeStr = String()
     
      //MARK:- view DidLoad
@@ -41,55 +41,6 @@ class PasswordSetViewController: BaseClassViewController {
         navigationController?.navigationBar.setGradientBackground(colors: colors)
     }
     
-    //MARK:- Custom Aleart
-    func showQuuestionFirstCustomDialog(animated: Bool = true) {
-        
-        // Create a custom view controller
-        let exitVc = self.storyboard?.instantiateViewController(withIdentifier: "VideoSavePopUpViewController") as? VideoSavePopUpViewController
-        
-        
-        
-        // Create the dialog
-        let popup = PopupDialog(viewController: exitVc!,
-                                buttonAlignment: .horizontal,
-                                transitionStyle: .bounceDown,
-                                tapGestureDismissal: true,
-                                panGestureDismissal: true)
-        
-        exitVc?.titleLbl.text = "Do you want to save this content to your profile?"
-        exitVc!.yes_Btn.addTargetClosure { _ in
-            popup.dismiss()
-            self.showQuestionSecondCustomDialog()
-        }
-        exitVc!.no_btn.addTargetClosure { _ in
-            popup.dismiss()
-        }
-        
-        present(popup, animated: animated, completion: nil)
-    }
-    
-    func showQuestionSecondCustomDialog(animated: Bool = true) {
-        
-        // Create a custom view controller
-        let exitVc = self.storyboard?.instantiateViewController(withIdentifier: "VideoSavePopUpViewController") as? VideoSavePopUpViewController
-        
-        // Create the dialog
-        let popup = PopupDialog(viewController: exitVc!,
-                                buttonAlignment: .horizontal,
-                                transitionStyle: .bounceDown,
-                                tapGestureDismissal: true,
-                                panGestureDismissal: true)
-        
-        exitVc?.titleLbl.text = "Do you want to send for legal services?"
-        exitVc!.yes_Btn.addTargetClosure { _ in
-            popup.dismiss()
-            self.performSegue(withIdentifier: "setPassword", sender: self)
-        }
-        exitVc!.no_btn.addTargetClosure { _ in
-            popup.dismiss()
-        }
-        present(popup, animated: animated, completion: nil)
-    }
     
     //MARK:- Api
     func passwordSet(){
@@ -116,9 +67,7 @@ class PasswordSetViewController: BaseClassViewController {
                         if let sucessStr = resultDict["success"] as? Bool{
                             print(sucessStr)
                             if sucessStr{
-                            DispatchQueue.main.async {
-                                self.showQuuestionFirstCustomDialog()
-                             }
+                        self.performSegue(withIdentifier: "setPassword", sender: self)
                         }else {
                             self.showAlert(title: "Alert!", message: "sumthing wrong! please try again")
                             self.stopProgress()
@@ -132,6 +81,7 @@ class PasswordSetViewController: BaseClassViewController {
                 }
         }
     }
+    
     @IBAction func actionSaveButton(_ sender: Any) {
         passwordSet()
     }

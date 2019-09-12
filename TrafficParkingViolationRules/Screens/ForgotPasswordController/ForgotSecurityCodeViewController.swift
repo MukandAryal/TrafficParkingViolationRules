@@ -19,7 +19,7 @@ class ForgotSecurityCodeViewController: BaseClassViewController {
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     //MARK: Property
     var passwordContainerView: PasswordContainerView!
-    let kPasswordDigit = 6
+    let kPasswordDigit = 4
     
     //MARK:- view DidLoad
     override func viewDidLoad() {
@@ -61,8 +61,9 @@ class ForgotSecurityCodeViewController: BaseClassViewController {
                         print(sucessStr)
                         if sucessStr{
                             let obj = self.storyboard?.instantiateViewController(withIdentifier: "HowCanAssetViewController") as! HowCanAssetViewController
-                           self.navigationController?.pushViewController(obj, animated: true)
-                            self.showAlert(title: "Alert!", message: "Password change successfully")
+                            self.navigationController?.pushViewController(obj, animated: true)
+                              self.showAlert(title: "Alert!", message: "Password change sucessfully")
+                           // self.showQuuestionFirstCustomDialog()
                         }else {
                             self.showAlert(title: "Alert!", message: "sumthing wrong! please try again")
                             self.stopProgress()
@@ -75,6 +76,31 @@ class ForgotSecurityCodeViewController: BaseClassViewController {
                     }
                 }
         }
+    }
+    
+    func showQuuestionFirstCustomDialog(animated: Bool = true) {
+        passwordStackView.isUserInteractionEnabled = true
+        // Create a custom view controller
+        let exitVc = self.storyboard?.instantiateViewController(withIdentifier: "VideoSavePopUpViewController") as? VideoSavePopUpViewController
+        
+        
+        
+        // Create the dialog
+        let popup = PopupDialog(viewController: exitVc!,
+                                buttonAlignment: .horizontal,
+                                transitionStyle: .bounceDown,
+                                tapGestureDismissal: true,
+                                panGestureDismissal: true)
+        
+        exitVc?.titleLbl.text = "Do you want to save this content to your profile?"
+        exitVc!.yes_Btn.addTargetClosure { _ in
+            popup.dismiss()
+        }
+        exitVc!.no_btn.addTargetClosure { _ in
+            popup.dismiss()
+        }
+        
+        present(popup, animated: animated, completion: nil)
     }
     
     @IBAction func actionBackButton(_ sender: Any) {

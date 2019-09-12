@@ -43,6 +43,7 @@
             <size key="customSize" width="231" height="163"/>
             <connections>
                 <outlet property="imageView" destination="t0O-S7-nB9" id="re8-ev-ZX8"/>
+                <outlet property="video_icon" destination="vZt-Sx-gIe" id="lcR-Xr-0Dt"/>
             </connections>
             <point key="canvasLocation" x="5.0724637681159424" y="86.71875"/>
         </collectionViewCell>

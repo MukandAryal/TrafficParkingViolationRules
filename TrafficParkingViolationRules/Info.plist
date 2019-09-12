@@ -37,6 +37,14 @@
 		<string>Helvetica-medium.otf</string>
 		<string>Helvetica-bold.ttf</string>
 	</array>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Description</string>
+    
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Description</string>
+    
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Description</string>
 	<key>UILaunchImageFile</key>
 	<string>MyLaunchImage</string>
 	<key>UILaunchStoryboardName</key>

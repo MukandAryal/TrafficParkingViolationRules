@@ -123,10 +123,43 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         present(popup, animated: animated, completion: nil)
     }
     
+    func moveHome(){
+        let obj = self.storyboard?.instantiateViewController(withIdentifier: "TrafficCamera_VC") as! TrafficCamera_VC
+        stopProgress()
+        self.navigationController?.pushViewController(obj, animated: true)
+    }
+    
+    func showAreYouCustomDialog(animated: Bool = true) {
+        
+        // Create a custom view controller
+        let exitVc = self.storyboard?.instantiateViewController(withIdentifier: "VideoSavePopUpViewController") as? VideoSavePopUpViewController
+        
+        
+        
+        // Create the dialog
+        let popup = PopupDialog(viewController: exitVc!,
+                                buttonAlignment: .horizontal,
+                                transitionStyle: .bounceDown,
+                                tapGestureDismissal: true,
+                                panGestureDismissal: true)
+        
+        exitVc?.titleLbl.text = "Are you still there?"
+        exitVc!.yes_Btn.addTargetClosure { _ in
+            popup.dismiss()
+            
+        }
+        exitVc!.no_btn.addTargetClosure { _ in
+            popup.dismiss()
+            self.moveHome()
+        }
+        present(popup, animated: animated, completion: nil)
+    }
+    
     func startTimer(){
         // If you don't use the 2 lines above then the timer will continue from whatever time it was stopped at
         let timeNow = String(format: "%02d:%02d", timeMin, timeSec)
         durationTxt.text = timeNow
+//        if timeNow == "20.00"{
         stopTimer() // stop it at it's current time before starting it again
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             self?.timerTick()
@@ -141,9 +174,8 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
         }
         let timeNow = String(format: "%02d:%02d", timeMin, timeSec)
         durationTxt.text = timeNow
-        if timeNow == "00:05"{
-            durationTxt.isHidden = true
-            recording_btn.isHidden = true
+        if timeNow == "01:00"{
+           self.showAreYouCustomDialog()
         }
     }
     
@@ -226,7 +258,6 @@ class TrafficCamera_VC: BaseClassViewController , AVCaptureFileOutputRecordingDe
     
     func setupCaptureMode(_ mode: Int) {
         // Video Mode
-        
     }
     
     //MARK:- Camera Session

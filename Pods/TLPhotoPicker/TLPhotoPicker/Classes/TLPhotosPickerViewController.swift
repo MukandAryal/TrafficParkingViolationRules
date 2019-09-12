@@ -345,8 +345,8 @@ extension TLPhotosPickerViewController {
         self.titleLabel.text = self.configure.defaultCameraRollTitle
         self.subTitleLabel.text = self.configure.tapHereToChange
         self.cancelButton.title = self.configure.cancelTitle
-       // self.doneButton.title = self.configure.doneTitle
-//        self.doneButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)], for: .normal)
+        // self.doneButton.title = self.configure.doneTitle
+        //        self.doneButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)], for: .normal)
         self.emptyView.isHidden = true
         self.emptyImageView.image = self.configure.emptyImage
         self.emptyMessageLabel.text = self.configure.emptyMessage
@@ -462,17 +462,22 @@ extension TLPhotosPickerViewController {
         self.dismiss(done: false)
     }
     
-    @IBAction open func doneButtonTap() {
-        let alert = UIAlertController(title: "Would you like this traffic video for representation?", message: "", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-            self.stopPlay()
-            self.dismiss(done: true)
-        }))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-       
+    @IBAction open func doneButtonTap(){
+        if self.selectedAssets.count == 0{
+            let alert = UIAlertController(title: "Please select at least one video or image", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: "Would you like this traffic video for representation?", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                self.stopPlay()
+                self.dismiss(done: true)
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
+    
     
     private func dismiss(done: Bool) {
         if done {
@@ -561,7 +566,7 @@ extension TLPhotosPickerViewController: UIImagePickerControllerDelegate, UINavig
             break
         }
     }
-
+    
     private func showCamera() {
         guard !maxCheck() else { return }
         let picker = UIImagePickerController()
@@ -578,7 +583,7 @@ extension TLPhotosPickerViewController: UIImagePickerControllerDelegate, UINavig
         picker.delegate = self
         self.present(picker, animated: true, completion: nil)
     }
-
+    
     private func handleDeniedAlbumsAuthorization() {
         self.delegate?.handleNoAlbumPermissions(picker: self)
         self.handleNoAlbumPermissions?(self)
@@ -773,13 +778,13 @@ extension TLPhotosPickerViewController: PHPhotoLibraryChangeObserver {
                             self.collectionView.moveItem(at: IndexPath(item: fromIndex, section: 0),
                                                          to: IndexPath(item: toIndex, section: 0))
                         }
-                    }, completion: { [weak self] (completed) in
-                        guard let `self` = self else { return }
-                        if completed {
-                            if let changed = changes.changedIndexes, changed.count > 0 {
-                                self.collectionView.reloadItems(at: changed.map { IndexPath(item: $0+addIndex, section:0) })
+                        }, completion: { [weak self] (completed) in
+                            guard let `self` = self else { return }
+                            if completed {
+                                if let changed = changes.changedIndexes, changed.count > 0 {
+                                    self.collectionView.reloadItems(at: changed.map { IndexPath(item: $0+addIndex, section:0) })
+                                }
                             }
-                        }
                     })
                 }
             }else {
@@ -838,7 +843,7 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
         guard var asset = collection.getTLAsset(at: indexPath), let phAsset = asset.phAsset else { return }
         cell.popScaleAnim()
         if let index = self.selectedAssets.firstIndex(where: { $0.phAsset == asset.phAsset }) {
-        //deselect
+            //deselect
             self.logDelegate?.deselectedPhoto(picker: self, at: indexPath.row)
             self.selectedAssets.remove(at: index)
             #if swift(>=4.1)
@@ -861,7 +866,7 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
                 stopPlay()
             }
         }else {
-        //select
+            //select
             self.logDelegate?.selectedPhoto(picker: self, at: indexPath.row)
             guard !maxCheck() else { return }
             guard canSelect(phAsset: phAsset) else { return }

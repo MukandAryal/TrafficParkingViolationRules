@@ -28,7 +28,7 @@ class BaseClassViewController: UIViewController {
     }
     
     func showCustomProgress() {
-        ANLoader.showLoading("Loading", disableUI: true)
+        ANLoader.showLoading("Loading", disableUI: false)
     }
     
     func stopProgress() {

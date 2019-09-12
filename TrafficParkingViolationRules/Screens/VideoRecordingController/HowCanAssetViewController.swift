@@ -75,15 +75,15 @@ class HowCanAssetViewController: BaseClassViewController,TLPhotosPickerViewContr
     
     //MARK: Button Action
     @IBAction func actionTrafficVioationBtn(_ sender: Any) {
-        UserDefaults.standard.set("trafficViolation", forKey: "trafficViolation")
-        let passwordSetStr = UserDefaults.standard.string(forKey: "passCodeSet")
-        if passwordSetStr != nil{
+       // UserDefaults.standard.set("trafficViolation", forKey: "trafficViolation")
+       // let passwordSetStr = UserDefaults.standard.string(forKey: "passCodeSet")
+        //if passwordSetStr != nil{
             let obj = self.storyboard?.instantiateViewController(withIdentifier: "TrafficCamera_VC") as! TrafficCamera_VC
             self.navigationController?.pushViewController(obj, animated: true)
-        }else{
-            let obj = self.storyboard?.instantiateViewController(withIdentifier: "PasswordSetViewController") as! PasswordSetViewController
-            self.navigationController?.pushViewController(obj, animated: false)
-        }
+//        }else{
+//            let obj = self.storyboard?.instantiateViewController(withIdentifier: "PasswordSetViewController") as! PasswordSetViewController
+//            self.navigationController?.pushViewController(obj, animated: false)
+//        }
     }
     
     @IBAction func actionParkingVioationBtn(_ sender: Any) {

@@ -10,6 +10,7 @@ import UIKit
 
 class videoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var video_icon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

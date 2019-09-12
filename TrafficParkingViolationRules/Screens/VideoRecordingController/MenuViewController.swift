@@ -57,6 +57,16 @@ class MenuViewController: BaseClassViewController {
         self.navigationController?.pushViewController(obj, animated: true)
     }
     
+    @IBAction func actionViewProfileBtn(_ sender: Any) {
+//        let obj = self.storyboard?.instantiateViewController(withIdentifier: "VideoCollectionViewController") as! VideoCollectionViewController
+//        self.navigationController?.pushViewController(obj, animated: true)
+    }
+    
+    @IBAction func actionViewHistoryBtn(_ sender: Any) {
+        let obj = self.storyboard?.instantiateViewController(withIdentifier: "VideoCollectionViewController") as! VideoCollectionViewController
+        self.navigationController?.pushViewController(obj, animated: true)
+    }
+    
     @IBAction func actionLogoutBtn(_ sender: Any) {
         UserDefaults.standard.removeObject(forKey: "loginEmailId")
         UserDefaults.standard.removeObject(forKey: "loginPassword")

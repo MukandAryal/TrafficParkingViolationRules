@@ -59,7 +59,8 @@ class ForgotPasswordViewController: BaseClassViewController {
                 }
                 let resultDict = response.value as? NSDictionary
                 if let mstStr = resultDict!["message"] as? String {
-                    let alert = UIAlertController(title: "Alert", message:mstStr, preferredStyle: UIAlertController.Style.alert);                      alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                    let alert = UIAlertController(title: "Alert", message:mstStr, preferredStyle: UIAlertController.Style.alert);
+                    alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                     self.email_txtField.text = ""
                     self.present(alert, animated: true, completion: nil)
                 }
@@ -77,7 +78,7 @@ class ForgotPasswordViewController: BaseClassViewController {
                 if Connectivity.isConnectedToInternet() {
                     forgotPassword()
                 } else {
-                    showAlert(title: "Alert!", message: "lease check your internet connection")
+                    showAlert(title: "Alert!", message: "please check your internet connection")
                 }
             }
         }

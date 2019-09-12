@@ -141,7 +141,7 @@ class NewUserPasswordViewController: BaseClassViewController {
             if success { // if request is granted (success is true)
                 DispatchQueue.main.async {
                     // self.performSegue(withIdentifier: identifier, sender: nil)
-                    let obj = self.storyboard?.instantiateViewController(withIdentifier: "HowCanAssetViewController") as! HowCanAssetViewController
+                    let obj = self.storyboard?.instantiateViewController(withIdentifier: "PasswordSetViewController") as! PasswordSetViewController
                     self.navigationController?.pushViewController(obj, animated: false)
                 }
             } else { // if request is denied (success is false)
